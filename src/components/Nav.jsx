@@ -7,11 +7,11 @@ export function Nav() {
         <nav>
             <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/products">Productos</Link></li>
-                <li><Link to="/case-studies">Estudios de caso</Link></li>
-                <li><Link to="/about-us">Acerca de nosotros</Link></li>
-                <li><Link to="/contact">Contacto</Link></li>
-                <li><Link to="/resources">Recursos</Link></li>
+                <li><Link to="/products">Products</Link></li>
+                <li><Link to="/case-studies">Case Studies</Link></li>
+                <li><Link to="/about-us">About Us</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/resources">Resources</Link></li>
             </ul>
         </nav>
     )
