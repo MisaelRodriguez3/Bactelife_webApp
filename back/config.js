@@ -1,0 +1,1 @@
+export const DATA_BASE = "mongodb+srv://bactelifeWebApp:5LgWRqMnbXy7hJNp@webapp.7ovag2e.mongodb.net/?retryWrites=true&w=majority"

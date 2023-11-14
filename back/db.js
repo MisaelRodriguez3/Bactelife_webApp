@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import { DATA_BASE } from "./config.js";
 
 export const connection = async () => {
     try {
-        await mongoose.connect('mongodb+srv://bactelifeWebApp:5LgWRqMnbXy7hJNp@webapp.7ovag2e.mongodb.net/?retryWrites=true&w=majority')
-        console.log('successful connection');
+        await mongoose.connect(DATA_BASE);
+        console.log('successful connection')
     } catch (error) {
         console.log(error);
     }
