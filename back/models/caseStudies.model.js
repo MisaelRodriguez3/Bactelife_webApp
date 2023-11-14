@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const caseStudiesSchema = mongoose.Schema({
+const caseStudiesSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -14,8 +14,10 @@ const caseStudiesSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Image: {
-        type: Image,
+    imageURL: {
+        type: String,
         requierd: true
     }
-})
+});
+
+export default mongoose.model('Case Studies', caseStudiesSchema);
