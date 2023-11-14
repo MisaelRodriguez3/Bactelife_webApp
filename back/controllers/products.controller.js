@@ -15,7 +15,8 @@ export const addProduct = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
     }
-}
+};
+
 export const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
@@ -25,7 +26,8 @@ export const getProducts = async (req, res) => {
         res.status(500).json({ error: 'There was an internal server error' });
     }
 
-}
+};
+
 export const getProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -37,7 +39,8 @@ export const getProduct = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
     }
-}
+};
+
 export const updateProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -51,7 +54,8 @@ export const updateProduct = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
     }
-}
+};
+
 export const deleteProduct = async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
@@ -63,4 +67,4 @@ export const deleteProduct = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
     }
-}
+};
