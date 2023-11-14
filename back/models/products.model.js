@@ -13,6 +13,14 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    pounds_per_yard: {
+        type: Number,
+        required: true
+    },
+    ounces_per_pound: {
+        type: Number,
+        required: true
     }
 });
 

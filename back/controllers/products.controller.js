@@ -6,10 +6,12 @@ export const addProduct = async (req, res) => {
         const newProduct = new Product({
             name,
             description,
-            price
+            price,
+            pounds_per_yard,
+            ounces_per_pound
         });
         await newProduct.save();
-        res.send(`${newProduct.name} added`)
+        res.json(newProduct)
 
     } catch (error) {
         console.log(error);
