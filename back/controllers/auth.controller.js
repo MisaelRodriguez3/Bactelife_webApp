@@ -33,7 +33,7 @@ export const login = async (req, res) => {
         const userFound = await Auth.findOne({ user });
         const isMatch = await bcrypt.compare(password, userFound.password);
         if (!userFound || !isMatch) {
-            return res.json('incorrect data');
+            return res.json({ error: 'incorrect data' });
         }
         const token = await createAccesToken({ id: userFound._id });
         res.cookie('token', token);
@@ -53,3 +53,41 @@ export const logout = (req, res) => {
         res.status(500).json({ error: 'There was an internal server error' });
     }
 };
+
+export const getAdmins = async (req, res) => {
+    try {
+        const admins = await Auth.find();
+        res.json(admins);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'There was an internal server error' });
+    }
+}
+
+export const deleteAdmin = async (req, res) => {
+    try {
+        const admin = await Auth.findByIdAndDelete(req.params.id);
+        if (!admin) {
+            return res.status(404).json({ error: 'this member does not exist' });
+        }
+        res.json('admin deleted')
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'There was an internal server error' });
+    }
+}
+
+export const updateAdmin = async (req, res) => {
+    try {
+        const admin = await Auth.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        });
+        if (!admin) {
+            return res.status(404).json('this member does not exist');
+        };
+        res.json(admin);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'There was an internal server error' });
+    }
+}

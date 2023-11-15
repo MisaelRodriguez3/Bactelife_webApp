@@ -34,7 +34,7 @@ export const getProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) {
-            return res.status(404).json('this product does not exist')
+            return res.status(404).json({ error: 'this product does not exist' })
         }
         res.json(product);
     } catch (error) {
@@ -49,7 +49,7 @@ export const updateProduct = async (req, res) => {
             new: true
         });
         if (!product) {
-            return res.status(404).json('this product does not exist')
+            return res.status(404).json({ error: 'this product does not exist' })
         }
         res.json(product);
     } catch (error) {
