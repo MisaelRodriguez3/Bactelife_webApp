@@ -5,8 +5,10 @@ import productsRoutes from './routes/product.routes.js';
 import caseRoutes from './routes/caseStudies.routes.js';
 import memebersRoutes from './routes/members.routes.js';
 import AuthRoutes from './routes/auth.routes.js';
+import cors from 'cors';
 
 const app = express();
+app.use(cors({ credentials: true }));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());

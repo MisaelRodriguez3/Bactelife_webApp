@@ -1,7 +1,8 @@
 import Auth from '../models/auth.model.js';
-import { ROOT, PASSWORD } from '../config.js';
+import { ROOT, PASSWORD, SECRET_KEY } from '../config.js';
 import bcrypt from 'bcryptjs';
 import { createAccesToken } from '../libs/jwt.js';
+import jwt from 'jsonwebtoken';
 
 export const register = async (req, res) => {
     const { user, password } = req.body;
@@ -90,4 +91,28 @@ export const updateAdmin = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
     }
+}
+
+//En revision
+
+export const verifyToken = async (req, res) => {
+    const { token } = req.cookies;
+
+    if (!token) {
+        return res.status(401).json('Unauthorized');
+    }
+
+    jwt.verify(token, SECRET_KEY, async (err, user) => {
+        if (err) {
+            return res.status(401).json('Unauthorized');
+        }
+        if (user === ROOT) {
+            return res.json('Root admin')
+        }
+        const userFound = await Auth.findById(user.id);
+        if (!userFound) {
+            return res.status(401).json('Unauthorized');
+        }
+        return res.json(userFound)
+    })
 }
