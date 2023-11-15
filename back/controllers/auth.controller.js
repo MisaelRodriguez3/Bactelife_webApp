@@ -31,7 +31,7 @@ export const login = async (req, res) => {
             return res.json('Root admin')
         }
         const userFound = await Auth.findOne({ user });
-        isMatch = await bcrypt.compare(password, userFound.password);
+        const isMatch = await bcrypt.compare(password, userFound.password);
         if (!userFound || !isMatch) {
             return res.json('incorrect data');
         }
