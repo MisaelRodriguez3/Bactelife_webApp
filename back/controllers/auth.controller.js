@@ -1,6 +1,6 @@
 import Auth from '../models/auth.model.js';
 import { ROOT, PASSWORD, SECRET_KEY } from '../config.js';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs'; //to encrypt the password
 import { createAccesToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
 
