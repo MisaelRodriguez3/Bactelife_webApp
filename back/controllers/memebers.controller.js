@@ -24,12 +24,13 @@ export const getMembers = async (req, res) => {
 };
 
 export const addMember = async (req, res) => {
-    const { name, last_name, position, imageURL } = req.body;
+    const { name, last_name, position, about, imageURL } = req.body;
     try {
         const newMember = new Member({
             name,
             last_name,
             position,
+            about,
             imageURL
         });
         await newMember.save();

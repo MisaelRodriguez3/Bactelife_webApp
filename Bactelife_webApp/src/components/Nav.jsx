@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 export function Nav() {
-    const navigate = useNavigate()
     return (
         <nav>
             <ul>
@@ -12,6 +11,7 @@ export function Nav() {
                 <li><Link to="/about-us">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/resources">Resources</Link></li>
+                <li><Link to="/calculate">Calculate Tool</Link></li>
             </ul>
         </nav>
     )

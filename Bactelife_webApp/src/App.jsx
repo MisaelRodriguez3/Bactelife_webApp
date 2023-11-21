@@ -8,6 +8,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import ProductsPage from './pages/ProductsPage';
 import ResourcesPage from './pages/ResourcesPage';
 import Admin from './pages/Admin';
+import CalculatePage from './pages/CalculatePage';
 
 export const App = () => {
     return (
@@ -15,6 +16,7 @@ export const App = () => {
             {/* Vistas segun la ruta */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/calculate" element={<CalculatePage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/case-studies" element={<CaseStudiesPage />} />
                 <Route path="/about-us" element={<AboutUsPage />} />

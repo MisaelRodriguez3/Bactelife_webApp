@@ -10,6 +10,9 @@ export const createMemberSchema = z.object({
     position: z.string({
         required_error: 'Position is required'
     }),
+    about: z.string({
+        required_error: 'About field is required'
+    }),
     imageURL: z.string({
         required_error: 'Image is required'
     })
@@ -24,6 +27,9 @@ export const updateMemberSchema = z.object({
     }).optional(),
     position: z.string({
         required_error: 'Position is required'
+    }).optional(),
+    about: z.string({
+        required_error: 'About field is required'
     }).optional(),
     imageURL: z.string({
         required_error: 'Image is required'
