@@ -9,6 +9,10 @@ export const ProductSelector = ({ products }) => {
     const [largo, setLargo] = useState('');
     const [ancho, setAncho] = useState('');
     const area = largo * ancho;
+    const yardas = 1
+    const metros = 0.836127
+    const hectareas = 8.3613e-5
+    const kilometros = 8.3613e-7
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
@@ -70,10 +74,10 @@ export const ProductSelector = ({ products }) => {
 
                 <select name="size" id="size" value={selectedUnidad} onChange={handleUnidad}>
                     <option value="" disabled>sleccione un unidad de medida</option>
-                    <option value={1}>Yardas</option>
-                    <option value={8.3613e-5}>Hectareas</option>
-                    <option value={0.836127}>Metros</option>
-                    <option value={8.3613e-7}>KM</option>
+                    <option value={yardas}>Yardas</option>
+                    <option value={hectareas}>Hectareas</option>
+                    <option value={metros}>Metros</option>
+                    <option value={kilometros}>KM</option>
                 </select>
                 {selectedProduct ? <p>Price: ${productInfo.price}</p> : ''}
                 {selectedProduct && selectedUnidad && (selectedSize || (largo && ancho)) ?
