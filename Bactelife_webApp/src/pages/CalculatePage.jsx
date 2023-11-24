@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProductSelector } from '../components/ProductSelector';
 import { getProductsRequest } from '../api/backRoutes';
+import { Header } from '../components/Header';
 
 export default function CalculatePage() {
     document.title = 'Calculate Tool'
@@ -21,7 +22,8 @@ export default function CalculatePage() {
 
     return (
         <>
-            <h1>Calculate Tool</h1>
+            <Header />
+            <h1>Estimation Tool</h1>
             <ProductSelector products={products} />
         </>
     );

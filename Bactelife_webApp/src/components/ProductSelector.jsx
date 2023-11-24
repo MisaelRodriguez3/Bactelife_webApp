@@ -75,13 +75,18 @@ export const ProductSelector = ({ products }) => {
                 <select name="size" id="size" value={selectedUnidad} onChange={handleUnidad}>
                     <option value="" disabled>sleccione un unidad de medida</option>
                     <option value={yardas}>Yardas</option>
-                    <option value={hectareas}>Hectareas</option>
+                    {selectedType === 'medidas' ? '' : <option value={hectareas}>Hectareas</option>}
                     <option value={metros}>Metros</option>
                     <option value={kilometros}>KM</option>
                 </select>
                 {selectedProduct ? <p>Price: ${productInfo.price}</p> : ''}
-                {selectedProduct && selectedUnidad && (selectedSize || (largo && ancho)) ?
-                    <p>Costo aproximado: ${(productInfo.price * ((selectedSize || area) / selectedUnidad)).toFixed(2)}</p> : ""}
+                {selectedProduct && selectedUnidad && (selectedSize || (area != 0)) ?
+                    <>
+                        <p>Costo aproximado: ${(productInfo.price * ((selectedSize || area) / selectedUnidad)).toFixed(2)}</p>
+                        <p>Cantidad de producto: {((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnidad).toFixed(2)} lb</p>
+                        <p>Agua requerida: {((productInfo.quarts_per_pound * (selectedSize || area)) / selectedUnidad).toFixed(2)} quarts</p>
+                    </> : ""
+                }
             </div>
         </>
     );

@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    ounces_per_pound: {
+    quarts_per_pound: {
         type: Number,
         required: true
     }

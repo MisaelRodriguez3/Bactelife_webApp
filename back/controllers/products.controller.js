@@ -1,14 +1,14 @@
 import Product from '../models/products.model.js'
 
 export const addProduct = async (req, res) => {
-    const { name, description, price, pounds_per_yard, ounces_per_pound } = req.body;
+    const { name, description, price, pounds_per_yard, quarts_per_pound } = req.body;
     try {
         const newProduct = new Product({
             name,
             description,
             price,
             pounds_per_yard,
-            ounces_per_pound
+            quarts_per_pound
         });
         await newProduct.save();
         res.json(newProduct)
