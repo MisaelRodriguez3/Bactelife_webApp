@@ -80,6 +80,10 @@ export const deleteAdmin = async (req, res) => {
 
 export const updateAdmin = async (req, res) => {
     try {
+        if (req.body.password) {
+            const passHash = await bcrypt.hash(req.body.password, 10);
+            req.body.password = passHash;
+        }
         const admin = await Auth.findByIdAndUpdate(req.params.id, req.body, {
             new: true
         });

@@ -13,7 +13,7 @@ export const createProductSchema = z.object({
     pounds_per_yard: z.number({
         required_error: 'Pounds per yard is required'
     }),
-    ounces_per_pound: z.number({
+    quarts_per_pound: z.number({
         required_error: 'Ounces per pound is required'
     })
 });
