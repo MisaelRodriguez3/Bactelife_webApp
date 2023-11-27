@@ -97,8 +97,6 @@ export const updateAdmin = async (req, res) => {
     }
 }
 
-//En revision
-
 export const verifyToken = async (req, res) => {
     const { token } = req.cookies;
 

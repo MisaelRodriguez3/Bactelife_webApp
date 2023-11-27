@@ -8,3 +8,8 @@ export const SECRET_KEY = "lobitos";
 //default administrator
 export const ROOT = "Pablo_XD";
 export const PASSWORD = "Pablo1e53";
+
+export const CLIENTD_ID = "78131165559-97s0itpdq82s6bj3jec32i57bofalrva.apps.googleusercontent.com"
+export const CLIENT_SECRET = "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"
+export const REDIRECT_URI = "https://developers.google.com/oauthplayground"
+export const REFRESH_TOKEN = "1//04EXvOiis5ODgCgYIARAAGAQSNwF-L9IrFUWG56AqRDV4_Imkj_VwNQuCLwFZW8w90wAWNtUophGVT_vaYtuYXtzVE8u5HXvlYak"
