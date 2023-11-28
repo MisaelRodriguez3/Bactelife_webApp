@@ -1,4 +1,5 @@
 import React from "react";
+import { sendEmailRequest } from "../api/backRoutes";
 
 export function Formulario() {
 
@@ -12,23 +13,15 @@ export function Formulario() {
     });
 
     try {
-      const response = await fetch('http://localhost:3000/api/send-email', {
-        method: 'POST',
-        body: JSON.stringify(formDataObject),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await sendEmailRequest(formDataObject);
 
-
-      if (response.ok) {
+      if (response.status === 200) {
         console.log('Correo enviado con éxito');
-        // Manejar la respuesta del servidor si es necesario
       } else {
-        console.error('Error al enviar el correo');
+        console.error('Error al enviar el correo:', response.statusText);
       }
     } catch (error) {
-      console.error('Error en el envío del correo:', error);
+      console.error('Error en el envío del correo:', error.message);
     }
   };
 

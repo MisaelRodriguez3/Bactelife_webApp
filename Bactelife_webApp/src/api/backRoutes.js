@@ -19,3 +19,6 @@ export const addProductRequest = (product) => axios.post('/product', product);
 export const updateProductRequest = (id, product) => axios.put(`/update-product/${id}`, product);
 export const deleteProductRequest = (id) => axios.delete(`/delete-product/${id}`);
 
+//sendMailRoute
+
+export const sendEmailRequest = (info) => axios.post('/send-email', info);
