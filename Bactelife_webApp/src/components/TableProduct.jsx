@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
+import "./sidebar/sidebar.css"
 
 export default function TableProduct({ product }) {
   const { deleteProduct } = useAdmin()
@@ -14,9 +15,8 @@ export default function TableProduct({ product }) {
       <td>{product.pounds_per_yard}</td>
       <td>{product.quarts_per_pound}</td>
       <td>
-        {/* Botones de acciones, por ejemplo, editar y eliminar */}
-        <button onClick={()=>{deleteProduct(product._id)}}>delete</button>
-        <Link to={`/product/${product._id}` }>Editar</Link>
+        <Link className='caseListEdit' to={`/product/${product._id}` }>Editar</Link>
+        <button className='caseListDelete' onClick={()=>{deleteProduct(product._id)}}>Delete</button>
       </td>
     </tr>
   );

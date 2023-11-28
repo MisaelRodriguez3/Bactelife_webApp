@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useAdmin } from '../context/AdminContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-
+import "./admin/css/tabla.css"
 
 export default function LoginPage() {
   const {register, handleSubmit,} = useForm()
@@ -18,19 +18,21 @@ export default function LoginPage() {
 
   return (
     <div>
-      <div>
+      <div className='formulario'>
         <h1>Login</h1>
         <form onSubmit={onSubmit} >
-          <input type="text" {...register("user", {required: true})} placeholder='user'/>
+          <div className="username">
+            <input type="text" {...register("user", {required: true})} placeholder='user'/>
+            <label></label>
+          </div>
           
-          <input type="password" {...register("password", {required: true})} placeholder='password'/>
-
+          <div className="password">
+            <input type="password" {...register("password", {required: true})} placeholder='password'/>
+          </div>
+        
           <button type='submit'>Login</button>
         </form>
 
-        <p>
-          Don't have an account? <Link to="/register">Sing up</Link>
-        </p>
 
       </div>
     </div>

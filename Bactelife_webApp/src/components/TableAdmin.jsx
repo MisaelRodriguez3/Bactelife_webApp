@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
+import "./sidebar/sidebar.css"
 
 export default function TableAdmin({ admin }) {
   const { deleteAdmin } = useAdmin()
@@ -11,9 +12,8 @@ export default function TableAdmin({ admin }) {
       <td>{admin.user}</td>
       <td>{admin.password}</td>
       <td>
-        {/* Botones de acciones, por ejemplo, editar y eliminar */}
-        <button onClick={()=>{deleteAdmin(admin._id)}}>delete</button>
-        <Link to={`/admin/${admin._id}` }>Editar</Link>
+        <Link className='caseListEdit' to={`/admin/${admin._id}` }>Edit</Link>
+        <button className='caseListDelete' onClick={()=>{deleteAdmin(admin._id)}}>Delete</button>
       </td>
     </tr>
   );

@@ -21,6 +21,26 @@ export const AdminProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([])
     const [admins, setAdmins] = useState([])
+    const [sidebarVisible, setSidebarVisible] = useState(true);
+
+    const toggleSidebar = () => {
+        setSidebarVisible(!sidebarVisible);
+      };
+
+    useEffect(() => {
+    const handleResize = () => {
+        setSidebarVisible(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Verificar la visibilidad inicial en la carga de la página
+    handleResize();
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+    }, []);
 
 
     const signin = async(user) => {
@@ -141,7 +161,8 @@ export const AdminProvider = ({children}) => {
 
   return (
     <AdminContex.Provider value={{isAuthenticated,loading, products, admins, signin, logout, getAdmins,
-        createAdmin, deleteAdmin, updateAdmin, getProducts, createProduct, deleteProduct, getProduct, updateProduct}}>
+        createAdmin, deleteAdmin, updateAdmin, getProducts, createProduct, deleteProduct, getProduct, updateProduct,
+        sidebarVisible, toggleSidebar}}>
         {children}
     </AdminContex.Provider>
   )

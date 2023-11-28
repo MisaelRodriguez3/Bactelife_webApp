@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function GetProduct() {
   document.title = 'GetProduct'
   const { register, handleSubmit, setValue } = useForm();
-  const { createProduct, getProduct, updateProduct } = useAdmin();
+  const { createProduct, getProduct, updateProduct, sidebarVisible } = useAdmin();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -46,16 +46,16 @@ export default function GetProduct() {
     <>
       <Topbar />
       <div className="container">
-        <Sidebar />
-        <div className="prueba">
+          {sidebarVisible && <Sidebar />}
+          <div className={sidebarVisible ? 'prueba' : 'prueba-full'}>
           <div className="case">
             <div className="caseTitleContainer">
-              <h1 className="caseTitle">Edit product</h1>
+              <h1 className="caseTitle">{params.id ? "Edit product" : "Create product"}</h1>
             </div>
 
             <div className="caseContainer">
               <div className="caseUpdate">
-                <span className="caseUpdateTitle">Edit</span>
+                <span className="caseUpdateTitle">{params.id ? "Edit" : "Create"}</span>
                 <form onSubmit={onSubmit} className="caseUpdateForm">
                   <div className="caseUpdateLeft">
                     <div className="caseUpdateItem">

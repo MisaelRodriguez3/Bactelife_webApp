@@ -1,82 +1,92 @@
 .container{
-    display: flex;
+  display: flex;
 }
 
 .prueba{
-    flex: 4;
+  flex: 4;
 }
 
 .case {
-    flex: 4;
-    padding: 20px;
-  }
-  
-  .caseTitleContainer {
+  flex: 4;
+  padding: 20px;
+}
+
+.caseTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.caseAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.caseContainer {
+  display: flex;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.caseUpdate {
+  flex: 2;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin-left: 20px;
+}
+
+
+.caseUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.caseUpdateForm{
     display: flex;
-    align-items: center;
     justify-content: space-between;
-  }
-  
-  .caseAddButton {
-    width: 80px;
+    margin-top: 20px;
+}
+
+.caseUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.caseUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.caseUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
+
+.caseUpdateButton{
+    border-radius: 5px;
     border: none;
     padding: 5px;
-    background-color: teal;
-    border-radius: 5px;
     cursor: pointer;
+    background-color: darkblue;
     color: white;
-    font-size: 16px;
-  }
-  
-  .caseContainer {
-    display: flex;
-    margin-top: 20px;
-  }
-  
-  .caseUpdate {
-    flex: 2;
-    padding: 20px;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    margin-left: 20px;
-  }
+    font-weight: 600;
+}
 
-  
-  .caseUpdateTitle{
-      font-size: 24px;
-      font-weight: 600;
-  }
-  
-  .caseUpdateForm{
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-  }
-  
-  .caseUpdateItem{
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
-  }
-  
-  .caseUpdateItem>label{
-      margin-bottom: 5px;
-      font-size: 14px;
-  }
-  
-  .caseUpdateInput{
-      border: none;
-      width: 250px;
-      height: 30px;
-      border-bottom: 1px solid gray;
-  }
-  
-  .caseUpdateButton{
-      border-radius: 5px;
-      border: none;
-      padding: 5px;
-      cursor: pointer;
-      background-color: darkblue;
-      color: white;
-      font-weight: 600;
-  }
+
+.caseUpdate {
+  flex: 1;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin: 0px 0;
+}

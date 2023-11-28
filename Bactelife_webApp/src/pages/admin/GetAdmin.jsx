@@ -8,7 +8,7 @@ import { useAdmin } from "../../context/AdminContext";
 export default function GetAdmin() {
   document.title = 'GetAdmin'
   const { register, handleSubmit } = useForm();
-  const { createAdmin, updateAdmin } = useAdmin();
+  const { createAdmin, updateAdmin, sidebarVisible } = useAdmin();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -31,16 +31,16 @@ export default function GetAdmin() {
     <>
       <Topbar />
       <div className="container">
-        <Sidebar />
-        <div className="prueba">
+          {sidebarVisible && <Sidebar />}
+        <div className={sidebarVisible ? 'prueba' : 'prueba-full'}>
           <div className="case">
             <div className="caseTitleContainer">
-              <h1 className="caseTitle">Edit admin</h1>
+              <h1 className="caseTitle">{params.id ? "Edit admin" : "Create admin"}</h1>
             </div>
 
             <div className="caseContainer">
               <div className="caseUpdate">
-                <span className="caseUpdateTitle">Edit</span>
+                <span className="caseUpdateTitle">{params.id ? "Edit" : "Create"}</span>
                 <form onSubmit={onSubmit} className="caseUpdateForm">
                   <div className="caseUpdateLeft">
                     <div className="caseUpdateItem">
