@@ -7,7 +7,7 @@ export function Nav() {
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/calculate">Calculate Tool</Link></li>
+                <li><Link to="/calculate">Estimation Tool</Link></li>
             </ul>
         </nav>
     )

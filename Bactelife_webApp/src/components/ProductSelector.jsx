@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import '../index.css'
 
 export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
     const [productInfo, setProductInfo] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
-    const [selectedUnidad, setSelectedUnidad] = useState('');
+    const [selectedUnit, setSelectedUnit] = useState('');
     const [selectedType, setSelectedType] = useState('');
-    const [largo, setLargo] = useState('');
-    const [ancho, setAncho] = useState('');
-    const area = largo * ancho;
+    const [length, setLength] = useState('');
+    const [width, setWidth] = useState('');
+    const area = length * width;
+
+    //formulas for the calculator
+    const estimatedCost = (((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit) * productInfo.price).toFixed(2);
+    const productQuantity = ((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit).toFixed(2);
+    const waterRequired = ((productInfo.quarts_per_pound * (selectedSize || area)) / selectedUnit).toFixed(2);
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
@@ -20,70 +26,72 @@ export const ProductSelector = ({ products }) => {
         setSelectedSize(e.target.value);
     };
 
-    const handleUnidad = (e) => {
-        setSelectedUnidad(e.target.value);
+    const handleUnit = (e) => {
+        setSelectedUnit(e.target.value);
     };
 
     const handleType = (e) => {
         setSelectedType(e.target.value)
         if (e.target.value === 'area') {
-            setAncho('')
-            setLargo('')
+            setWidth('')
+            setLength('')
         } else {
             setSelectedSize('')
         }
     };
 
-    const handleLanrgo = (e) => {
-        setLargo(e.target.value)
+    const handleLength = (e) => {
+        setLength(e.target.value)
     };
 
-    const handleAncho = (e) => {
-        setAncho(e.target.value)
+    const handleWidth = (e) => {
+        setWidth(e.target.value)
     };
 
     return (
-        <>
-            <div className="product">
-                <label>escoge un producto</label>
-                <br />
-                <select name='products' value={selectedProduct} onChange={handleProductChange}>
-                    <option value="" disabled>sleccione un producto</option>
-                    {products.map(product => (
-                        <option key={product._id} value={product.name}>{product.name}</option>
-                    ))}
-                </select>
-                <br />
-                <select name="type" id="type" value={selectedType} onChange={handleType}>
-                    <option value="area">Area</option>
-                    <option value="medidas">medidas</option>
-                </select>
-                <br />
-                {selectedType === 'medidas' ?
-                    <>
-                        <label>Largo</label>
-                        <input type="number" name="largo" id="largo" value={largo} onChange={handleLanrgo} />
-                        <label>Ancho</label>
-                        <input type="number" name="ancho" id="ancho" value={ancho} onChange={handleAncho} />
-                    </>
-                    : <input type="number" value={selectedSize} id="size" onChange={handleSize} />}
-
-                <select name="size" id="size" value={selectedUnidad} onChange={handleUnidad}>
-                    <option value="" disabled>sleccione un unidad de medida</option>
-                    <option value={1}>Yardas</option>
-                    {selectedType === 'medidas' ? '' : <option value={8.3613e-5}>Hectareas</option>}
-                    <option value={0.836127}>Metros</option>
-                    <option value={8.3613e-7}>KM</option>
-                </select>
-                {selectedProduct ? <p>Price: ${productInfo.price}</p> : ''}
-                {selectedProduct && selectedUnidad && (selectedSize || (area != 0)) ?
-                    <>
-                        <p>Costo aproximado: ${(productInfo.price * ((selectedSize || area) / selectedUnidad)).toFixed(2)}</p>
-                        <p>Cantidad de producto: {((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnidad).toFixed(2)} lb</p>
-                        <p>Agua requerida: {((productInfo.quarts_per_pound * (selectedSize || area)) / selectedUnidad).toFixed(2)} quarts</p>
-                    </> : ""
-                }
-            </div>
-        </>
+        <div className="product">
+            <label className="label">Products:</label>
+            <br />
+            <select className="select" name='products' value={selectedProduct} onChange={handleProductChange}>
+                <option value="" disabled>Select a product</option>
+                {products.map(product => (
+                    <option key={product._id} value={product.name}>{product.name}</option>
+                ))}
+            </select>
+            <br />
+            <label className="label">Calculate by:</label>
+            <br />
+            <select className="select" name="type" id="type" value={selectedType} onChange={handleType}>
+                <option value="area">Area</option>
+                <option value="measures">Measures</option>
+            </select>
+            <br />
+            {selectedType === 'measures' ?
+                <>
+                    <label className="label">Length:</label>
+                    <input className="input" type="number" name="length" id="length" min={0} value={length} onChange={handleLength} />
+                    <label className="label">Width:</label>
+                    <input className="input" type="number" name="width" id="width" min={0} value={width} onChange={handleWidth} />
+                </>
+                : <input className="input" type="number" placeholder='Land Area' min={0} value={selectedSize} id="size" onChange={handleSize} />}
+            <br />
+            <label className="label">Unit:</label>
+            <br />
+            <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
+                <option value="" disabled>Select unit of measure</option>
+                <option value={1}>Yards</option>
+                {selectedType === 'measures' ? '' : <option value={8.3613e-5}>Hectares</option>}
+                <option value={0.836127}>Meters</option>
+                <option value={8.3613e-7}>Kilometers</option>
+            </select>
+            {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
+            {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
+                <>
+                    <p className="estimated-cost">Estimated cost: ${estimatedCost}</p>
+                    <p className="product-quantity">Product quantity: {productQuantity} lb</p>
+                    <p className="water-required">Water required: {waterRequired} quarts</p>
+                </> : ""
+            }
+        </div>
     );
 };

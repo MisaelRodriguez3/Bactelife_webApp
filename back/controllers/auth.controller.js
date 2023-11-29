@@ -120,7 +120,7 @@ export const verifyToken = async (req, res) => {
             return res.status(401).json('Unauthorized');
         }
 
-        return res.json(userFound);
+        return res.json(userFound.user);
     } catch (error) {
         console.error(error);
         return res.status(401).json('Unauthorized');
