@@ -27,9 +27,9 @@ export const login = async (req, res) => {
     const { user, password } = req.body;
     try {
         if (user === ROOT && password === PASSWORD) {
-            const token = await createAccesToken({ id: 0 });
+            const token = await createAccesToken({ user: 'root' });
             res.cookie('token', token);
-            return res.json('Root admin')
+            return res.json({ user: 'root' })
         }
         const userFound = await Auth.findOne({ user });
         const isMatch = await bcrypt.compare(password, userFound.password);
@@ -104,17 +104,25 @@ export const verifyToken = async (req, res) => {
         return res.status(401).json('Unauthorized');
     }
 
-    jwt.verify(token, SECRET_KEY, async (err, user) => {
-        if (err) {
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY);
+
+        if (!decoded) {
             return res.status(401).json('Unauthorized');
         }
-        if (user === ROOT) {
-            return res.json('Root admin')
+
+        if (decoded.user === 'root') {
+            return res.json({ user: 'root' });
         }
-        const userFound = await Auth.findById(user.id);
+
+        const userFound = await Auth.findById(decoded.id);
         if (!userFound) {
             return res.status(401).json('Unauthorized');
         }
-        return res.json(userFound)
-    })
-}
+
+        return res.json(userFound);
+    } catch (error) {
+        console.error(error);
+        return res.status(401).json('Unauthorized');
+    }
+};

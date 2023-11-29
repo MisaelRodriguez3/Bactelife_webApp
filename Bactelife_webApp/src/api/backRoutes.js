@@ -4,7 +4,15 @@ import axios from "./axios";
 
 export const registerRequest = (user) => axios.post('/register', user);
 export const loginRequest = (user) => axios.post('/login', user);
-export const verifyTokenRequest = () => axios.get('/verify');
+export const verifyTokenRequest = () => {
+    try {
+        const response = axios.get('/verify');
+        return response
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const getAdminsRequest = () => axios.get('/admins');
 // export const addAdminRequest = (user) => axios.post('/admin', user);
 export const updateAdminRequest = (id, user) => axios.put(`/update-admin/${id}`, user);

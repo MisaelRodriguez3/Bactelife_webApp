@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { createContext } from 'react'
-import { registerRequest, loginRequest, verifyTokenRequest, getAdminsRequest,
+import {
+    registerRequest, loginRequest, verifyTokenRequest, getAdminsRequest,
     updateAdminRequest, deleteAdminRequest, logoutRequest, getProductRequest, getProductsRequest,
-    addProductRequest, updateProductRequest, deleteProductRequest } from '../api/backRoutes';
+    addProductRequest, updateProductRequest, deleteProductRequest
+} from '../api/backRoutes';
 import Cookies from 'js-cookie'
 
 const AdminContex = createContext()
 
 export const useAdmin = () => {
     const context = useContext(AdminContex)
-    if(!context){
+    if (!context) {
         throw new Error("falta de descripcion del error")
     }
     return context;
 }
 
 
-export const AdminProvider = ({children}) => {
+export const AdminProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([])
@@ -25,25 +27,25 @@ export const AdminProvider = ({children}) => {
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
-      };
+    };
 
     useEffect(() => {
-    const handleResize = () => {
-        setSidebarVisible(window.innerWidth > 768);
-    };
+        const handleResize = () => {
+            setSidebarVisible(window.innerWidth > 768);
+        };
 
-    window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize);
 
-    // Verificar la visibilidad inicial en la carga de la página
-    handleResize();
+        // Verificar la visibilidad inicial en la carga de la página
+        handleResize();
 
-    return () => {
-        window.removeEventListener('resize', handleResize);
-    };
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
 
-    const signin = async(user) => {
+    const signin = async (user) => {
         try {
             const res = await loginRequest(user);
             console.log(res)
@@ -53,12 +55,12 @@ export const AdminProvider = ({children}) => {
         }
     }
 
-    const logout = async() => {
+    const logout = async () => {
         const res = await logoutRequest();
         console.log(res)
     }
 
-    const getProducts = async() => {
+    const getProducts = async () => {
         try {
             const res = await getProductsRequest()
             setProducts(res.data)
@@ -67,21 +69,21 @@ export const AdminProvider = ({children}) => {
         }
     }
 
-    const createProduct = async(product) => {
+    const createProduct = async (product) => {
         const res = await addProductRequest(product)
         console.log(res)
     }
 
-    const deleteProduct = async(id) => {
+    const deleteProduct = async (id) => {
         try {
             const res = await deleteProductRequest(id);
-            if(res.status === 200) setProducts(products.filter(product => product._id !== id))
+            if (res.status === 200) setProducts(products.filter(product => product._id !== id))
         } catch (error) {
             console.log(error)
         }
     }
 
-    const getProduct = async(id) => {
+    const getProduct = async (id) => {
         try {
             const res = await getProductRequest(id);
             return res.data
@@ -99,7 +101,7 @@ export const AdminProvider = ({children}) => {
     }
 
 
-    const getAdmins = async() => {
+    const getAdmins = async () => {
         try {
             const res = await getAdminsRequest()
             setAdmins(res.data)
@@ -109,15 +111,15 @@ export const AdminProvider = ({children}) => {
         }
     }
 
-    const createAdmin = async(admin) => {
+    const createAdmin = async (admin) => {
         const res = await registerRequest(admin)
         console.log(res)
     }
 
-    const deleteAdmin = async(id) => {
+    const deleteAdmin = async (id) => {
         try {
             const res = await deleteAdminRequest(id);
-            if(res.status === 200) setAdmins(admins.filter(admin => admin._id !== id))
+            if (res.status === 200) setAdmins(admins.filter(admin => admin._id !== id))
         } catch (error) {
             console.log(error)
         }
@@ -131,19 +133,19 @@ export const AdminProvider = ({children}) => {
         }
     }
 
-    useEffect(()=>{
-        async function checkLogin(){
+    useEffect(() => {
+        async function checkLogin() {
             const cookies = Cookies.get();
 
-            if(!cookies.token){
+            if (!cookies.token) {
                 setIsAuthenticated(false);
                 setLoading(false);
                 return;
             }
             try {
                 const res = await verifyTokenRequest(cookies.token)
-                console.log(res)
-                if(!res.data){
+                console.log("aqui", res)
+                if (!res.data) {
                     setIsAuthenticated(false)
                     setLoading(false)
                     return;
@@ -159,11 +161,13 @@ export const AdminProvider = ({children}) => {
         checkLogin();
     }, [])
 
-  return (
-    <AdminContex.Provider value={{isAuthenticated,loading, products, admins, signin, logout, getAdmins,
-        createAdmin, deleteAdmin, updateAdmin, getProducts, createProduct, deleteProduct, getProduct, updateProduct,
-        sidebarVisible, toggleSidebar}}>
-        {children}
-    </AdminContex.Provider>
-  )
+    return (
+        <AdminContex.Provider value={{
+            isAuthenticated, loading, products, admins, signin, logout, getAdmins,
+            createAdmin, deleteAdmin, updateAdmin, getProducts, createProduct, deleteProduct, getProduct, updateProduct,
+            sidebarVisible, toggleSidebar
+        }}>
+            {children}
+        </AdminContex.Provider>
+    )
 }
