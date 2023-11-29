@@ -1,5 +1,6 @@
 import React from "react";
 import { sendEmailRequest } from "../api/backRoutes";
+import "./sidebar/form.css";
 
 export function Formulario() {
 
@@ -27,34 +28,40 @@ export function Formulario() {
 
 
   return (
-    <div>
-      <h1>Make up the mind</h1>
-      <form onSubmit={handleSubmit} action="/enviar" method="post">
-        <div>
-          <label htmlFor="name">Full Name:</label>
-          <input type="text" id="name" name="name" />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input type="phone" id="phone" name="phone" />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" />
-        </div>
-        <div>
-          <label htmlFor="preferred_language">Preferred Language:</label>
-          <select id="preferred_language" name="preferred_language">
-            <option value="spanish">Spanish</option>
-            <option value="english">English</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="message">Message:</label>
-          <textarea id="message" name="message" />
-        </div>
-        <button type="submit">Send</button>
-      </form>
+    <div className="body">
+      <div className="container-2">
+        <form onSubmit={handleSubmit} action="/enviar" method="post">
+          <h1 className="titleForm">Make up the mind</h1>
+          <div className="content">
+            <div className="input-box">
+              <label htmlFor="name">Full Name:</label>
+              <input type="text" id="name" name="name" />
+            </div>
+            <div className="input-box">
+              <label htmlFor="phone">Phone:</label>
+              <input type="phone" id="phone" name="phone" />
+            </div>
+            <div className="input-box">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div className="input-box">
+              <label htmlFor="preferred_language">Preferred Language:</label>
+              <select id="preferred_language" name="preferred_language">
+                <option value="spanish">Spanish</option>
+                <option value="english">English</option>
+              </select>
+            </div>
+          </div>
+          <label htmlFor="message" className="labelText">Message:</label>
+          <div className="textarea-container">
+            <textarea id="message" name="message" />
+            <div className="button-container">
+              <button type="submit">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

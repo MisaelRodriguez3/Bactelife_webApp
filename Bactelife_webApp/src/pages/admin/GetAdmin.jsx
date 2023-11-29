@@ -4,6 +4,7 @@ import Topbar from "../../components/topbar/Topbar";
 import "./css/edit.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAdmin } from "../../context/AdminContext";
+import { useEffect } from "react";
 
 export default function GetAdmin() {
   document.title = 'GetAdmin'
@@ -11,6 +12,8 @@ export default function GetAdmin() {
   const { createAdmin, updateAdmin, sidebarVisible } = useAdmin();
   const navigate = useNavigate();
   const params = useParams();
+
+  useEffect(()=>{},[])
 
   
   const onSubmit = handleSubmit((data)=> {

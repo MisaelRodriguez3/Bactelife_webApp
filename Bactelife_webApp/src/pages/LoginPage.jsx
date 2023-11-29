@@ -30,7 +30,7 @@ export default function LoginPage() {
             <input type="password" {...register("password", {required: true})} placeholder='password'/>
           </div>
         
-          <button type='submit'>Login</button>
+          <button className='loginButton' type='submit'>Login</button>
         </form>
 
 

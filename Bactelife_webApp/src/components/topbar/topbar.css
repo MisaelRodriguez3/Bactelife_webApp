@@ -26,6 +26,7 @@
   font-size: 27px;
   color: #1E7E2E;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .topLetter{
@@ -39,7 +40,7 @@
 }
 
 .topbarIconContainer {
-  margin-right: 10px;
+  margin-top: 6px;
   cursor: pointer;
 }
 
