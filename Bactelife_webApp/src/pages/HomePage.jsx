@@ -2,12 +2,12 @@ import { Header } from "../components/Header"
 import { Footer } from '../components/Footer';
 
 export default function HomePage() {
-    document.title = 'Bactelife'
-    
+    document.title = 'Estimation Tool - Bactelife'
+
 
     return (
         <>
-            <Header button={true}/>
+            <Header button={true} />
             <Footer />
         </>
     )

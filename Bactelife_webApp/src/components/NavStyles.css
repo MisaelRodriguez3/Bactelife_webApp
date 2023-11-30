@@ -1,4 +1,4 @@
-nav {
+Nav {
   background-color: #000000;
   padding: 15px;
   display: flex;
@@ -6,8 +6,14 @@ nav {
   align-items: center;
   position: fixed;
   width: 100%;
+  z-index: 10;
+  margin-bottom: 100px;
 }
-*{margin: 0%;}
+
+* {
+  margin: 0;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -41,36 +47,48 @@ li a:hover {
 
 /* Estilos para el contenedor del botón */
 .content-below-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 570px; /* Ajusta la altura según sea necesario */
-  margin-top: 20px; /* Ajusta el margen superior para separar del menú */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .custom-button {
-  padding: 12px 24px; /* Espaciado interno del botón */
-  font-size: 18px; /* Tamaño de fuente */
-  font-weight: bold; /* Negrita */
-  color: #fff; /* Color de texto */
-  background-color: #00e9d5; /* Color de fondo del botón */
-  border: none; /* Quitamos el borde */
-  border-radius: 5px; /* Bordes redondeados */
-  text-decoration: none; /* Quitamos el subrayado del enlace */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  transition: background-color 0.3s ease; /* Transición suave */
+  padding: 12px 24px;
+  /* Espaciado interno del botón */
+  font-size: 18px;
+  /* Tamaño de fuente */
+  font-weight: bold;
+  /* Negrita */
+  color: #fff;
+  /* Color de texto */
+  background-color: #00e9d5;
+  /* Color de fondo del botón */
+  border: none;
+  /* Quitamos el borde */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  text-decoration: none;
+  /* Quitamos el subrayado del enlace */
+  cursor: pointer;
+  /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease;
+  /* Transición suave */
 }
 
 .custom-button:hover {
-  background-color: #0056b3; /* Cambio de color al pasar el cursor */
+  background-color: #0056b3;
+  /* Cambio de color al pasar el cursor */
 }
 
 .banner-container {
-  width: 100%;
   position: relative;
-  z-index: -1;
+  width: 100%;
+  text-align: center;
 }
 
 .banner {
   width: 100%;
+  height: auto;
+  margin-top: 100px;
 }
