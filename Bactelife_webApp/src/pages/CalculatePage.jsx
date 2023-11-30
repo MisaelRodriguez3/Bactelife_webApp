@@ -24,7 +24,7 @@ export default function CalculatePage() {
 
     return (
         <>
-            <Header />
+            <Header button={false}/>
             <h1>Estimation Tool</h1>
             <ProductSelector products={products} />
             <Footer />

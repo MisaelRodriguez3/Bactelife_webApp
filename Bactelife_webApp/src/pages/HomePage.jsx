@@ -3,10 +3,11 @@ import { Footer } from '../components/Footer';
 
 export default function HomePage() {
     document.title = 'Bactelife'
+    
 
     return (
         <>
-            <Header />
+            <Header button={true}/>
             <Footer />
         </>
     )

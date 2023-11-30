@@ -1,0 +1,76 @@
+nav {
+  background-color: #000000;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+*{margin: 0%;}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline-block;
+  margin-right: 150px;
+}
+
+li:last-child {
+  margin-right: 90px;
+}
+
+li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+li a:hover {
+  color: #00ffea;
+}
+
+.logo {
+  display: inline-block;
+  width: 250px;
+}
+
+/* Estilos para el contenedor del botón */
+.content-below-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 570px; /* Ajusta la altura según sea necesario */
+  margin-top: 20px; /* Ajusta el margen superior para separar del menú */
+}
+
+.custom-button {
+  padding: 12px 24px; /* Espaciado interno del botón */
+  font-size: 18px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  color: #fff; /* Color de texto */
+  background-color: #00e9d5; /* Color de fondo del botón */
+  border: none; /* Quitamos el borde */
+  border-radius: 5px; /* Bordes redondeados */
+  text-decoration: none; /* Quitamos el subrayado del enlace */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.custom-button:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el cursor */
+}
+
+.banner-container {
+  width: 100%;
+  position: relative;
+  z-index: -1;
+}
+
+.banner {
+  width: 100%;
+}

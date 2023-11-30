@@ -6,7 +6,7 @@ export default function ContactPage() {
     document.title = 'Contact'
     return (
         <>
-            <Header />
+            <Header button={false}/>
             <Formulario />
             <Footer />
         </>
