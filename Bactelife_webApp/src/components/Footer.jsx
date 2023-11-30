@@ -19,7 +19,7 @@ export function Footer() {
                 <div className="grupo-1">
                     <div className="box">
                         <figure>
-                            <a href="#">
+                            <a href="/">
                                 <img src="/src/image/logo-white.png" alt="bactelifelogo" />
                             </a>
                         </figure>

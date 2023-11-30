@@ -14,16 +14,16 @@ export default function Topbar() {
       <div className="topbarWrapper">
         <div className="topLeft">
           <div className="topbarIconContainer" onClick={toggleSidebar}>
-          {sidebarVisible ? <CloseIcon /> : <MenuIcon />}
+            {sidebarVisible ? <CloseIcon /> : <MenuIcon />}
           </div>
           <Link className='topLetter' to="/admin">
-          <span className="logo">bactelife</span>
+            <span className="logo">bactelife</span>
           </Link>
         </div>
         <div className="topRight">
           <Link to="/" onClick={() => logout()}>
             <div className="topbarIconContainer">
-              <LogoutIcon />
+              <LogoutIcon className='logoutIcon' />
             </div>
           </Link>
         </div>
