@@ -33,6 +33,7 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
+  width: 100%;
 }
 
 .sidebarListItem.active,
@@ -73,7 +74,7 @@ cursor: pointer;
 margin-right: 20px;
 }
 
-@media (max-width: 391px) {
+@media (max-width: 413px) {
 .sidebar {
   position: fixed;
 }
