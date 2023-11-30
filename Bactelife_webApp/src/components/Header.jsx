@@ -16,7 +16,12 @@ export function Header({ button }) {
                         <button onClick={handleButtonClick} className="custom-button">
                             Go to Bactelife
                         </button>
-                    </div> : null
+                    </div> :
+                    <div className="text-container">
+                        <h2 className="phrase">CLIMATE SMART - FARMER APPROVED</h2>
+                        <h3 className="key-words">Conserve Water - Better Quality Crops - Reduce Conventional Fertilizers - Fewer Pests - </h3>
+                        <h3 className="key-words">Faster Grow Season - Improve Soil - Lower Costs</h3>
+                    </div>
                 }
             </div>
         </header>

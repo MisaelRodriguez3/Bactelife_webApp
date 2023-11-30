@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IoIosContact } from "react-icons/io";
+import { MdCalculate } from "react-icons/md"
+import { FaHome } from "react-icons/fa";
 import "./NavStyles.css";
 
 export function Nav() {
-
+  const currentPath = location.pathname;
 
   return (
     <nav>
@@ -12,13 +15,26 @@ export function Nav() {
       </div>
       </Link>
       <ul>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link to="/calculate">Calculate Tool</Link>
-        </li>
+        <Link to='/'>
+          <li className={`${currentPath === '/' ? 'active' : ''}`}>
+            <FaHome className="icon" />
+            Home
+          </li>
+        </Link>
+        <Link to="/contact">
+          <li className={`${currentPath === '/contact' ? 'active' : ''}`}>
+            <IoIosContact className="icon" />
+            Contact
+          </li>
+        </Link>
+
+        <Link to="/calculate">
+          <li className={`${currentPath === '/calculate' ? 'active' : ''}`}>
+            <MdCalculate className="icon" />
+            Calculate Tool
+          </li>
+        </Link>
       </ul>
-    </nav>
+    </nav >
   );
 }
