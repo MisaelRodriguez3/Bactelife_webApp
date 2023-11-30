@@ -31,7 +31,7 @@ export function Nav() {
         <Link to="/calculate">
           <li className={`${currentPath === '/calculate' ? 'active' : ''}`}>
             <MdCalculate className="icon" />
-            Calculate Tool
+            Estimation Tool
           </li>
         </Link>
       </ul>
