@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "satart": "node back/index.js",
+    "start": "node back/index.js",
     "dev": "nodemon back/index.js"
   },
   "keywords": [],
