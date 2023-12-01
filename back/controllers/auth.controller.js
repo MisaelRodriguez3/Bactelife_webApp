@@ -34,7 +34,7 @@ export const login = async (req, res) => {
         const userFound = await Auth.findOne({ user });
         const isMatch = await bcrypt.compare(password, userFound.password);
         if (!userFound || !isMatch) {
-            return res.json({ error: 'incorrect data' });
+            return res.status(400).json({ error: 'incorrect data' });
         }
         const token = await createAccesToken({ id: userFound._id });
         res.cookie('token', token);
