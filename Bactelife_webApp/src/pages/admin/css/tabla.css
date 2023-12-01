@@ -65,7 +65,7 @@
 }
 
 .image {
-  background-image: url('./aw.png'); 
+  background-image: url('../../../../public/water.png'); 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
