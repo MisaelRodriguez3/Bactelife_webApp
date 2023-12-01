@@ -19,13 +19,13 @@ export const App = () => {
             <Router>
                 {/* Vistas segun la ruta */}
                 <Routes>
-                    <Route path='/login' element={<LoginPage/>} />
+                    <Route path='/login' element={<LoginPage />} />
 
                     <Route path="/" element={<HomePage />} />
                     <Route path="/calculate" element={<CalculatePage />} />
                     <Route path="/contact" element={<ContactPage />} />
 
-                    <Route element={<ProtectedRoute/>}>
+                    <Route element={<ProtectedRoute />}>
                         <Route path='/admin' element={<Admin />} />
 
 

@@ -15,7 +15,8 @@ export const register = async (req, res) => {
 
         const userSaved = await newUser.save();
         const token = await createAccesToken({ id: userSaved._id });
-        res.cookie('token', token);
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
+
         res.json('User created successfully');
     } catch (error) {
         console.log(error);
@@ -28,7 +29,7 @@ export const login = async (req, res) => {
     try {
         if (user === ROOT && password === PASSWORD) {
             const token = await createAccesToken({ user: 'root' });
-            res.cookie('token', token);
+            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
             return res.json({ user: 'root' })
         }
         const userFound = await Auth.findOne({ user });
@@ -37,7 +38,7 @@ export const login = async (req, res) => {
             return res.status(400).json({ error: 'incorrect data' });
         }
         const token = await createAccesToken({ id: userFound._id });
-        res.cookie('token', token);
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
         res.json(userFound);
     } catch (error) {
         console.log(error);
