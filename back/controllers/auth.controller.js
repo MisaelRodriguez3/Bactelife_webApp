@@ -15,8 +15,9 @@ export const register = async (req, res) => {
 
         const userSaved = await newUser.save();
         const token = await createAccesToken({ id: userSaved._id });
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
-
+        const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        //res.cookie('token', token)
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
         res.json('User created successfully');
     } catch (error) {
         console.log(error);
@@ -27,19 +28,25 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     const { user, password } = req.body;
     try {
+        const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
         if (user === ROOT && password === PASSWORD) {
             const token = await createAccesToken({ user: 'root' });
-            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
+            //res.cookie('token', token)
+            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
             return res.json({ user: 'root' })
         }
         const userFound = await Auth.findOne({ user });
         const isMatch = await bcrypt.compare(password, userFound.password);
-        if (!userFound || !isMatch) {
+        if (userFound && isMatch) {
+            const token = await createAccesToken({ id: userFound._id });
+            //res.cookie('token', token)
+            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
+            res.json(userFound.user);
+        } else {
             return res.status(400).json({ error: 'incorrect data' });
         }
-        const token = await createAccesToken({ id: userFound._id });
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
-        res.json(userFound);
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
