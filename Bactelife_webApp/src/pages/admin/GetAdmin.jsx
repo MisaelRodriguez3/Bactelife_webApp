@@ -57,7 +57,7 @@ export default function GetAdmin() {
                     <div className="caseUpdateItem">
                       <label>Password</label>
                       <input
-                        type="text"
+                        type="password"
                         placeholder="Password" {...register("password")}
                         className="caseUpdateInput"
                       />
