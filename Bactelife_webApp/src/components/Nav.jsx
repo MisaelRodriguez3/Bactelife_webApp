@@ -17,7 +17,7 @@ export function Nav() {
   return (
     <nav>
       <Link to='/'><div className="logo-container">
-        <img src="/src/image/logo-white.png" alt="Logo" className="logo" />
+        <img src="./logo-white.png" alt="Logo" className="logo" />
       </div>
       </Link>
       <div className={`link-container ${menuVisible ? 'show' : ''}`}>
