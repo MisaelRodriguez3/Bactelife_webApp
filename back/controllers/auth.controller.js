@@ -30,22 +30,23 @@ export const login = async (req, res) => {
     try {
         const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-        if (user === ROOT && password === PASSWORD) {
-            const token = await createAccesToken({ user: 'root' });
-            //res.cookie('token', token)
-            res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', domain: FRONT_URL, expires: expirationDate });
-            return res.json({ user: 'root' })
+        if (user === ROOT) {
+            if(password === PASSWORD){
+                const token = await createAccesToken({ user: 'root' });
+                // res.cookie('token', token);
+                res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', domain: FRONT_URL, expires: expirationDate });
+                return res.json({ user: 'root' })
+            } else {return res.status(400).json({ message: 'incorrect password' });}
         }
         const userFound = await Auth.findOne({ user });
+        if(!userFound) return res.status(400).json({message: "Incorrect user"});
         const isMatch = await bcrypt.compare(password, userFound.password);
-        if (!isMatch) {
-            return res.status(400).json({ error: 'incorrect data' });
-        }
+        if (!isMatch) return res.status(400).json({message: "Incorrect password"})
+
         const token = await createAccesToken({ id: userFound._id });
         //res.cookie('token', token)
         res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', domain: FRONT_URL, expires: expirationDate });
         res.json(userFound.user);
-
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'There was an internal server error' });
