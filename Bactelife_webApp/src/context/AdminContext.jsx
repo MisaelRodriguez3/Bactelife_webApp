@@ -23,6 +23,7 @@ export const AdminProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([])
     const [admins, setAdmins] = useState([])
+    const [errors, setErrors] = useState([])
     const [sidebarVisible, setSidebarVisible] = useState(true);
 
     const toggleSidebar = () => {
@@ -51,7 +52,10 @@ export const AdminProvider = ({ children }) => {
             console.log(res)
             setIsAuthenticated(true)
         } catch (error) {
-            console.log(error)
+            if(Array.isArray(error.response.data)){
+                return setErrors(error.response.data)
+            }
+            setErrors([error.response.data.message])
         }
     }
 
@@ -133,6 +137,15 @@ export const AdminProvider = ({ children }) => {
         }
     }
 
+    useEffect(()=>{
+        if(errors.length > 0){ 
+            const timer =setTimeout(()=>{
+                setErrors([])
+            }, 5000)
+            return () => clearTimeout(timer)
+        }
+    }, [errors])
+
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get();
@@ -165,7 +178,7 @@ export const AdminProvider = ({ children }) => {
         <AdminContex.Provider value={{
             isAuthenticated, loading, products, admins, signin, logout, getAdmins,
             createAdmin, deleteAdmin, updateAdmin, getProducts, createProduct, deleteProduct, getProduct, updateProduct,
-            sidebarVisible, toggleSidebar
+            sidebarVisible, toggleSidebar, errors
         }}>
             {children}
         </AdminContex.Provider>

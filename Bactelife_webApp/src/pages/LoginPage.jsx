@@ -5,9 +5,9 @@ import { useEffect } from 'react'
 import "./admin/css/tabla.css"
 
 export default function LoginPage() {
-  const {register, handleSubmit,} = useForm()
+  const {register, handleSubmit} = useForm()
 
-  const {signin, isAuthenticated} = useAdmin()
+  const {signin, errors: signinErrors ,isAuthenticated} = useAdmin()
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(data => {signin(data)})
@@ -19,6 +19,13 @@ export default function LoginPage() {
   return (
     <div>
       <div className='formulario'>
+      {
+          signinErrors.map((error, i) => (
+            <div className='etiqueta-p' key={i}>
+              {error}
+            </div>
+          ))
+      }
         <h1>Login</h1>
         <form onSubmit={onSubmit} >
           <div className="username">
