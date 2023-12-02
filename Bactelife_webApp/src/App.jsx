@@ -12,6 +12,7 @@ import ProductList from './pages/admin/ProductList';
 import GetProduct from './pages/admin/GetProduct';
 import AdminList from './pages/admin/AdminList';
 import GetAdmin from './pages/admin/GetAdmin';
+import NotFound from './components/NotFound404';
 
 export const App = () => {
     return (
@@ -37,7 +38,7 @@ export const App = () => {
                         <Route path="/admin/:id" element={<GetAdmin />} />
                         <Route path="/newAdmin" element={<GetAdmin />} />
                     </Route>
-
+                    <Route path='/*' element={<NotFound/>} />
                 </Routes>
             </Router>
         </AdminProvider>
