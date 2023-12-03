@@ -12,19 +12,19 @@
   transform: translateX(-50%);
   font-size: 2rem;
   margin-bottom: 20px;
-  z-index: 1; 
-  width: 100%; 
+  z-index: 1;
+  width: 100%;
 }
 
 .ErrorText {
   position: absolute;
-  top: 120px; 
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2rem;
   color: black;
-  z-index: 1; 
-  width: 100%; 
+  z-index: 1;
+  width: 100%;
 }
 
 .not-found-container::after {
@@ -33,10 +33,10 @@
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 320px; 
-  height: 400px; 
+  width: 320px;
+  height: 400px;
   background-image: url('./water.png');
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
-  z-index: 0; 
+  z-index: 0;
 }
