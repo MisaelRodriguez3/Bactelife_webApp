@@ -18,7 +18,7 @@ export const register = async (req, res) => {
         const token = await createAccesToken({ id: userSaved._id });
 
         //res.cookie('token', token)
-        res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'None', expires: expirationDate });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
         res.json('User created successfully');
     } catch (error) {
         console.log(error);
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
             if (password === PASSWORD) {
                 const token = await createAccesToken({ user: 'root' });
                 // res.cookie('token', token);
-                res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'None', expires: expirationDate });
+                res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
                 return res.json({ user: 'root' })
             } else { return res.status(400).json({ message: 'incorrect password' }); }
         }
@@ -45,7 +45,7 @@ export const login = async (req, res) => {
 
         const token = await createAccesToken({ id: userFound._id });
         //res.cookie('token', token)
-        res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'None', expires: expirationDate });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', expires: expirationDate });
         res.json(userFound.user);
     } catch (error) {
         console.log(error);
