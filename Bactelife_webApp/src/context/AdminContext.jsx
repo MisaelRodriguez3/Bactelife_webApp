@@ -49,10 +49,10 @@ export const AdminProvider = ({ children }) => {
     const signin = async (user) => {
         try {
             const res = await loginRequest(user);
-            console.log(res)
+            //console.log(res)
             setIsAuthenticated(true)
         } catch (error) {
-            if(Array.isArray(error.response.data)){
+            if (Array.isArray(error.response.data)) {
                 return setErrors(error.response.data)
             }
             setErrors([error.response.data.message])
@@ -61,7 +61,7 @@ export const AdminProvider = ({ children }) => {
 
     const logout = async () => {
         const res = await logoutRequest();
-        console.log(res)
+        //console.log(res)
     }
 
     const getProducts = async () => {
@@ -75,7 +75,7 @@ export const AdminProvider = ({ children }) => {
 
     const createProduct = async (product) => {
         const res = await addProductRequest(product)
-        console.log(res)
+        //console.log(res)
     }
 
     const deleteProduct = async (id) => {
@@ -109,7 +109,7 @@ export const AdminProvider = ({ children }) => {
         try {
             const res = await getAdminsRequest()
             setAdmins(res.data)
-            console.log(res.data)
+            //console.log(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -117,7 +117,7 @@ export const AdminProvider = ({ children }) => {
 
     const createAdmin = async (admin) => {
         const res = await registerRequest(admin)
-        console.log(res)
+        //console.log(res)
     }
 
     const deleteAdmin = async (id) => {
@@ -137,9 +137,9 @@ export const AdminProvider = ({ children }) => {
         }
     }
 
-    useEffect(()=>{
-        if(errors.length > 0){ 
-            const timer =setTimeout(()=>{
+    useEffect(() => {
+        if (errors.length > 0) {
+            const timer = setTimeout(() => {
                 setErrors([])
             }, 5000)
             return () => clearTimeout(timer)
@@ -157,7 +157,7 @@ export const AdminProvider = ({ children }) => {
             }
             try {
                 const res = await verifyTokenRequest(cookies.token)
-                console.log("aqui", res)
+                //console.log("aqui", res)
                 if (!res.data) {
                     setIsAuthenticated(false)
                     setLoading(false)
