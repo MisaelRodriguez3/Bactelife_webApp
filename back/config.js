@@ -10,7 +10,6 @@ export const ROOT = "Pablo_XD";
 export const PASSWORD = "Pablo1e53";
 
 export const FRONT_URL = process.env.FRONT_URL || 'http://localhost:5173'
-export const cookieOptions = { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'none', expires: new Date(Date.now() + 24 * 60 * 60 * 1000) }
 
 export const CLIENTD_ID = "78131165559-97s0itpdq82s6bj3jec32i57bofalrva.apps.googleusercontent.com"
 export const CLIENT_SECRET = "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"

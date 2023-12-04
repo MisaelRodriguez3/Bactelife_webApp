@@ -1,5 +1,5 @@
 import Auth from '../models/auth.model.js';
-import { ROOT, PASSWORD, SECRET_KEY, cookieOptions } from '../config.js';
+import { ROOT, PASSWORD, SECRET_KEY, FRONT_URL } from '../config.js';
 import bcrypt from 'bcryptjs'; //to encrypt the password
 import { createAccesToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
@@ -16,7 +16,7 @@ export const register = async (req, res) => {
         const token = await createAccesToken({ id: userSaved._id });
 
         //res.cookie('token', token)
-        res.cookie('token', token, cookieOptions);
+        res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'none', expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
         res.json('User created successfully');
     } catch (error) {
         console.log(error);
@@ -32,7 +32,7 @@ export const login = async (req, res) => {
             if (password === PASSWORD) {
                 const token = await createAccesToken({ user: 'root' });
                 // res.cookie('token', token);
-                res.cookie('token', token, cookieOptions);
+                res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'none', expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
                 return res.json({ user: 'root' })
             } else { return res.status(400).json({ message: 'incorrect password' }); }
         }
@@ -43,7 +43,7 @@ export const login = async (req, res) => {
 
         const token = await createAccesToken({ id: userFound._id });
         //res.cookie('token', token)
-        res.cookie('token', token, cookieOptions);
+        res.cookie('token', token, { httpOnly: true, secure: true, domain: FRONT_URL, partitioned: true, sameSite: 'none', expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
         res.json(userFound.user);
     } catch (error) {
         console.log(error);
