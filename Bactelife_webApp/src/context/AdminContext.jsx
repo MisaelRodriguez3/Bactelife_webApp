@@ -149,7 +149,7 @@ export const AdminProvider = ({ children }) => {
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get();
-
+            //console.log(cookies.token)
             if (!cookies.token) {
                 setIsAuthenticated(false);
                 setLoading(false);
@@ -159,7 +159,7 @@ export const AdminProvider = ({ children }) => {
                 const res = await verifyTokenRequest(cookies.token)
                 //console.log("aqui", res)
                 if (!res.data) {
-                    setIsAuthenticated(false)
+                    setIsAuthenticated(true)
                     setLoading(false)
                     return;
                 }

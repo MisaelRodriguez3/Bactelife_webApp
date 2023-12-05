@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs'; //to encrypt the password
 import { createAccesToken } from '../libs/jwt.js';
 import jwt from 'jsonwebtoken';
 
+const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000)
+
 export const register = async (req, res) => {
     const { user, password } = req.body;
     try {
@@ -16,7 +18,7 @@ export const register = async (req, res) => {
         const token = await createAccesToken({ id: userSaved._id });
 
         //res.cookie('token', token)
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', Partitioned: true });
+        res.cookie('token', token, { secure: true, sameSite: 'none', Partitioned: true, expires: expirationDate });
         res.json('User created successfully');
     } catch (error) {
         console.log(error);
@@ -32,7 +34,7 @@ export const login = async (req, res) => {
             if (password === PASSWORD) {
                 const token = await createAccesToken({ user: 'root' });
                 // res.cookie('token', token);
-                res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', Partitioned: true });
+                res.cookie('token', token, { secure: true, sameSite: 'none', Partitioned: true, expires: expirationDate });
                 return res.json({ user: 'root' })
             } else { return res.status(400).json({ message: 'incorrect password' }); }
         }
@@ -43,7 +45,7 @@ export const login = async (req, res) => {
 
         const token = await createAccesToken({ id: userFound._id });
         //res.cookie('token', token)
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', Partitioned: true });
+        res.cookie('token', token, { secure: true, sameSite: 'none', Partitioned: true, expires: expirationDate });
         res.json(userFound.user);
     } catch (error) {
         console.log(error);
@@ -54,7 +56,7 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
     try {
         //res.cookie('token', null, { expires: new Date(0) });
-        res.cookie('token', null, { httpOnly: true, secure: true, sameSite: 'None', expires: new Date(0) });
+        res.cookie('token', null, { secure: true, sameSite: 'None', expires: new Date(0) });
         res.json({ message: 'Logout successful' });
     } catch (error) {
         console.error(error);
