@@ -1,8 +1,8 @@
 .not-found-container {
   position: relative;
   text-align: center;
-  margin-top: 50px;
-  height: 100vh;
+  margin-top: 10vh;
+  height: 80vh;
 }
 
 .ErrorTitles {
@@ -39,4 +39,35 @@
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 0;
+}
+
+/* Media queries para hacerlo responsivo */
+@media screen and (max-width: 768px) {
+  .ErrorTitles {
+    font-size: 1.5rem;
+  }
+
+  .ErrorText {
+    font-size: 1rem;
+  }
+
+  .not-found-container::after {
+    width: 240px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ErrorTitles {
+    font-size: 1.2rem;
+  }
+
+  .ErrorText {
+    font-size: 0.9rem;
+  }
+
+  .not-found-container::after {
+    width: 160px;
+    height: 200px;
+  }
 }
