@@ -14,21 +14,22 @@ export default function GetAdmin() {
   const params = useParams();
 
   useEffect(()=>{},[])
-
   
-  const onSubmit = handleSubmit((data)=> {
-    console.log(data)
-    if(params.id){
-      console.log(params.id)
-
-      updateAdmin(params.id, data)
-    } else {
-      createAdmin(data)
-      console.log(data)
+  const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
+    try {
+        if (params.id) {
+            console.log(params.id);
+            await updateAdmin(params.id, data);
+        } else {
+            await createAdmin(data);
+            console.log(data);
+        }
+        navigate("/adminList");
+    } catch (error) {
+        console.error(error);
     }
-    navigate("/adminList")
-
-  } )
+});
 
   return (
     <>
