@@ -9,11 +9,14 @@ export default function TableProduct({ product }) {
   return (
     <tr>
       <td>{product._id}</td>
-      <td>{product.name}</td>
-      <td>{product.description}</td>
-      <td>{product.price}</td>
-      <td>{product.pounds_per_yard}</td>
-      <td>{product.quarts_per_pound}</td>
+      <td>{product.Gal_Product}</td>
+      <td>{product.Oz_Product}</td>
+      <td>{product.ml_Product}</td>
+      <td>{product.Gal_Water}</td>
+      <td>{product.L_Water}</td>
+      <td>{product.Acre}</td>
+      <td>{product.Ha}</td>
+      <td>{product.Price}</td>
       <td>
         <Link className='caseListEdit' to={`/product/${product._id}` }>Editar</Link>
         <button className='caseListDelete' onClick={()=>{deleteProduct(product._id)}}>Delete</button>

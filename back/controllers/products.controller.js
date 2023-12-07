@@ -1,15 +1,26 @@
 import Product from "../models/products.model.js";
 
 export const addProduct = async (req, res) => {
-  const { Gal_Product, description, price, pounds_per_yard, quarts_per_pound } =
-    req.body;
+  const {
+    Gal_Product,
+    Oz_Product,
+    ml_Product,
+    Gal_Water,
+    L_Water,
+    Acre,
+    Ha,
+    Price,
+  } = req.body;
   try {
     const newProduct = new Product({
-      name,
-      description,
-      price,
-      pounds_per_yard,
-      quarts_per_pound,
+      Gal_Product,
+      Oz_Product,
+      ml_Product,
+      Gal_Water,
+      L_Water,
+      Acre,
+      Ha,
+      Price,
     });
     await newProduct.save();
     res.json(newProduct);

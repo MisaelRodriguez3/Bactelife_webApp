@@ -1,27 +1,38 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trime: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    pounds_per_yard: {
-        type: Number,
-        required: true
-    },
-    quarts_per_pound: {
-        type: Number,
-        required: true
-    }
+  Gal_Product: {
+    type: Number,
+    required: true,
+  },
+  Oz_Product: {
+    type: String,
+    required: true,
+  },
+  ml_product: {
+    type: Number,
+    required: true,
+  },
+  Gal_Water: {
+    type: Number,
+    required: true,
+  },
+  L_Water: {
+    type: Number,
+    required: true,
+  },
+  Acre: {
+    type: Number,
+    required: true,
+  },
+  Ha: {
+    type: Number,
+    required: true,
+  },
+  Price: {
+    type: Number,
+    required: true,
+  },
 });
 
-export default mongoose.model('Product', productSchema);
+export default mongoose.model("Product", productSchema);

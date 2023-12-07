@@ -36,13 +36,14 @@ export default function ProductList() {
             <table className="product-table">
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Description</th>
+                  <th>Gal_Product</th>
+                  <th>Oz_Product</th>
+                  <th>ml_Product</th>
+                  <th>Gal_Water</th>
+                  <th>L_Water</th>
+                  <th>Acre</th>
+                  <th>Ha</th>
                   <th>Price</th>
-                  <th>pounds_per_yard</th>
-                  <th>quarts_per_pound</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>

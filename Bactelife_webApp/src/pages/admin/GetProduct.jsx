@@ -18,11 +18,17 @@ export default function GetProduct() {
       if(params.id){
         const product = await getProduct(params.id)
         console.log(product)
-        setValue('name', product.name)
-        setValue('description', product.description)
-        setValue('price', product.price)
-        setValue('pounds_per_yard', product.pounds_per_yard)
-        setValue('quarts_per_pound', product.quarts_per_pound)
+        setValue('Gal_Product', product.Gal_Product)
+        setValue('Oz_Product', product.Oz_Product)
+        setValue('ml_Product', product.ml_Product)
+        setValue('Gal_Water', product.Gal_Water)
+        setValue('L_Water', product.L_Water)
+        setValue('Acre', product.Acre)
+        setValue('Ha', product.Ha)
+        setValue('Price', product.Price)
+
+
+
       }
     }
     load()
@@ -59,18 +65,58 @@ export default function GetProduct() {
                 <form onSubmit={onSubmit} className="caseUpdateForm">
                   <div className="caseUpdateLeft">
                     <div className="caseUpdateItem">
-                      <label>Name</label>
+                      <label>Gal_Product</label>
                       <input
-                        type="text"
-                        placeholder="name" {...register("name")}
+                        type="number"
+                        placeholder="Gal_Product" {...register("Gal_Product", { valueAsNumber: true })}
                         className="caseUpdateInput"
                       />
                     </div>
                     <div className="caseUpdateItem">
-                      <label>Description</label>
+                      <label>Oz_Product</label>
                       <input
-                        type="text"
-                        placeholder="Description" {...register("description")}
+                        type="number"
+                        placeholder="Oz_Product" {...register("Oz_Product", { valueAsNumber: true })}
+                        className="caseUpdateInput"
+                      />
+                    </div>
+                    <div className="caseUpdateItem">
+                      <label>ml_Product</label>
+                      <input
+                        type="number"
+                        placeholder="ml_Product" {...register("ml_Product", { valueAsNumber: true })}
+                        className="caseUpdateInput"
+                      />
+                    </div>
+                    <div className="caseUpdateItem">
+                      <label>Gal_Water</label>
+                      <input
+                        type="number"
+                        placeholder="Gal_Water" {...register("Gal_Water", { valueAsNumber: true })}
+                        className="caseUpdateInput"
+                      />
+                    </div>
+                    <div className="caseUpdateItem">
+                      <label>L_Water</label>
+                      <input
+                        type="number"
+                        placeholder="L_Water" {...register("L_Water", { valueAsNumber: true })}
+                        className="caseUpdateInput"
+                      />
+                    </div>
+                    <div className="caseUpdateItem">
+                      <label>Acre</label>
+                      <input
+                        type="number"
+                        placeholder="Acre" {...register("Acre", { valueAsNumber: true })}
+                        className="caseUpdateInput"
+                      />
+                    </div>
+                    <div className="caseUpdateItem">
+                      <label>Ha</label>
+                      <input
+                        type="number"
+                        placeholder="Ha" {...register("Ha", { valueAsNumber: true })}
                         className="caseUpdateInput"
                       />
                     </div>
@@ -78,23 +124,7 @@ export default function GetProduct() {
                       <label>Price</label>
                       <input
                         type="number"
-                        placeholder="price" {...register("price", { valueAsNumber: true })}
-                        className="caseUpdateInput"
-                      />
-                    </div>
-                    <div className="caseUpdateItem">
-                      <label>pounds_per_yard</label>
-                      <input
-                        type="number"
-                        placeholder="pounds_per_yard" {...register("pounds_per_yard", { valueAsNumber: true })}
-                        className="caseUpdateInput"
-                      />
-                    </div>
-                    <div className="caseUpdateItem">
-                      <label>ounces_per_pound</label>
-                      <input
-                        type="number"
-                        placeholder="quarts_per_pound" {...register("quarts_per_pound", { valueAsNumber: true })}
+                        placeholder="Price" {...register("Price", { valueAsNumber: true })}
                         className="caseUpdateInput"
                       />
                     </div>
