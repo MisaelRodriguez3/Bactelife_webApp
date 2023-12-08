@@ -17,7 +17,7 @@ export const createProductSchema = z.object({
     required_error: "L_Water is required",
   }),
   Acre: z.number({
-    required_error: "Ha is required",
+    required_error: "Acre is required",
   }),
   Ha: z.number({
     required_error: "Ha is required",
