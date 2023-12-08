@@ -2,35 +2,35 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
   Gal_Product: {
-    type: Number,
+    type: number,
     required: true,
   },
   Oz_Product: {
-    type: Number,
+    type: number, 
     required: true,
   },
   ml_product: {
-    type: Number,
+    type: number,
     required: true,
   },
   Gal_Water: {
-    type: Number,
+    type: number,
     required: true,
   },
   L_Water: {
-    type: Number,
+    type: number,
     required: true,
   },
   Acre: {
-    type: Number,
+    type: number,
     required: true,
   },
   Ha: {
-    type: Number,
+    type: number,
     required: true,
   },
   Price: {
-    type: Number,
+    type: number,
     required: true,
   },
 });
