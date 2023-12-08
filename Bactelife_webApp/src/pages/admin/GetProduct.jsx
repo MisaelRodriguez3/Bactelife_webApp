@@ -68,64 +68,80 @@ export default function GetProduct() {
                       <label>Gal_Product</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Gal_Product" {...register("Gal_Product", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>Oz_Product</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Oz_Product" {...register("Oz_Product", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>ml_Product</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="ml_Product" {...register("ml_Product", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>Gal_Water</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Gal_Water" {...register("Gal_Water", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>L_Water</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="L_Water" {...register("L_Water", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>Acre</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Acre" {...register("Acre", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>Ha</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Ha" {...register("Ha", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                     <div className="caseUpdateItem">
                       <label>Price</label>
                       <input
                         type="number"
+                        step="0.01"
                         placeholder="Price" {...register("Price", { valueAsNumber: true })}
                         className="caseUpdateInput"
+                        pattern="\d+(\.\d{1,2})?"
                       />
                     </div>
                   </div>
