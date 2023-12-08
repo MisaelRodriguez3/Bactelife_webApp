@@ -10,7 +10,7 @@ export default function ProductList() {
   document.title = 'ProductList';
 
   const { getProducts, products, sidebarVisible } = useAdmin();
-  useEffect(()=>{
+  useEffect(() => {
     getProducts()
   }, [])
 
@@ -45,6 +45,7 @@ export default function ProductList() {
                   <th>Acre</th>
                   <th>Ha</th>
                   <th>Price</th>
+                  <th>Edit | Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,20 +56,20 @@ export default function ProductList() {
             </table>
           </div>
           <div className="pagination">
-          <button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className="page">Page {currentPage}</span>
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={indexOfLastItem >= products.length}
-          >
-            Next
-          </button>
-        </div>
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className="page">Page {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={indexOfLastItem >= products.length}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </>
