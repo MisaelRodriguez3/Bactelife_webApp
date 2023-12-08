@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
     type: Number, 
     required: true,
   },
-  ml_product: {
+  ml_Product: {
     type: Number,
     required: true,
   },
