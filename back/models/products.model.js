@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   Oz_Product: {
-    type: String,
+    type: Number,
     required: true,
   },
   ml_product: {
@@ -35,4 +35,4 @@ const productSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Product", productSchema);
+export default mongoose.model('Product', productSchema);
