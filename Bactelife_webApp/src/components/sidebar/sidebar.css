@@ -74,7 +74,7 @@ cursor: pointer;
 margin-right: 20px;
 }
 
-@media (max-width: 413px) {
+@media (max-width: 443px) {
 .sidebar {
   position: fixed;
 }
