@@ -12,9 +12,10 @@ export const ProductSelector = ({ products }) => {
     const area = length * width;
 
     //formulas for the calculator
-    const estimatedCost = (((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit) * productInfo.price).toFixed(2);
-    const productQuantity = ((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit).toFixed(2);
-    const waterRequired = ((productInfo.quarts_per_pound * (selectedSize || area)) / selectedUnit).toFixed(2);
+const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
+const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
+const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
+const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
@@ -77,13 +78,15 @@ export const ProductSelector = ({ products }) => {
             <br />
             <label className="label">Unit:</label>
             <br />
+            
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
                 <option value={1}>Yards</option>
-                {selectedType === 'measures' ? '' : <option value={8.3613e-5}>Hectares</option>}
+                <option value={8.3613e-5}>Hectares</option>
                 <option value={0.836127}>Meters</option>
                 <option value={8.3613e-7}>Kilometers</option>
             </select>
+            
             {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
             {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
                 <>
