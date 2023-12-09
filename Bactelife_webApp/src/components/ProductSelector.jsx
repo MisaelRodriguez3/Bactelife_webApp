@@ -12,10 +12,10 @@ export const ProductSelector = ({ products }) => {
     const area = length * width;
 
     //formulas for the calculator
-const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
-const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
-const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
-const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
+    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
+    const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
+    const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
+    const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
