@@ -4,6 +4,7 @@ import { getProductsRequest } from '../api/backRoutes';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import '../index.css'
+import ProductListFront from '../components/ProductListFront';
 
 export default function CalculatePage() {
     document.title = 'Calculate Tool'
@@ -24,9 +25,10 @@ export default function CalculatePage() {
 
     return (
         <>
-            <Header button={false}/>
+            <Header button={false} />
             <h1>Estimation Tool</h1>
             <ProductSelector products={products} />
+            <ProductListFront />
             <Footer />
         </>
     );

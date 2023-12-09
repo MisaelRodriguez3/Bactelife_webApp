@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.main-container {
+    display: flex;
+    max-width: 100%;
+    margin: 5rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    opacity: 1;
+    margin: 0;
+    background-color: rgb(235, 240, 245);
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.container {
+    flex: 1;
+    overflow: hidden;
+}
+
+.Wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product_table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.product_table th,
+.product_table td {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    min-width: 100px;
+    text-align: center;
+}
+
+.product_table td {
+    background-color: #FFEBCD;
+}
+
+.product_table th {
+    background-color: #000000;
+    color: #ffffff
+}
+
+.TitleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 10px;
+}
+
+.Title {
+    font-size: 20px;
+}
+
+.pages {
+    margin: 20px;
+}
+
+.pagina {
+    margin: 0 5px 0 5px;
+}
+
+.btn-pagination {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
+    border: 2px solid #909090;
+    color: #0c2b68;
+    font-weight: bold;
+}
+
+/*Estilos resposive*/
+
+
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        max-width: 100%;
+        margin: 1rem;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .container {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.875rem;
+        opacity: 1;
+        margin: 0;
+        background-color: rgb(235, 240, 245);
+        display: flex;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 1rem;
+
+
+    }
+
+
+}
