@@ -9,7 +9,7 @@
 
 }
 
-.container {
+.contenedor {
     font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
     opacity: 1;
@@ -23,7 +23,7 @@
     border-radius: 20px;
 }
 
-.container {
+.contenedor {
     flex: 1;
     overflow: hidden;
 }
@@ -34,7 +34,7 @@
     border-radius: 10px;
 }
 
-.product_table {
+.tabla_producto {
     width: 100%;
     border-collapse: collapse;
     white-space: nowrap;
@@ -42,8 +42,8 @@
 
 }
 
-.product_table th,
-.product_table td {
+.tabla_producto th,
+.tabla_producto td {
     border-top: 1px solid #ddd;
     padding: 10px;
     text-align: left;
@@ -51,11 +51,11 @@
     text-align: center;
 }
 
-.product_table td {
+.tabla_producto td {
     background-color: #FFEBCD;
 }
 
-.product_table th {
+.tabla_producto th {
     background-color: #000000;
     color: #ffffff
 }
@@ -102,7 +102,7 @@
 
     }
 
-    .container {
+    .contenedor {
         font-family: 'Poppins', sans-serif;
         font-size: 0.875rem;
         opacity: 1;

@@ -21,12 +21,12 @@ export default function ProductListFront() {
         <>
 
             <div className="main-container">
-                <div className='container'>
+                <div className='contenedor'>
                     <div className="TitleContainer">
                         <h1 className="Title">Product List</h1>
                     </div>
                     <div className="Wrapper">
-                        <table className="product_table">
+                        <table className="tabla_producto">
                             <thead>
                                 <tr>
                                     <th>Gal_Product</th>
