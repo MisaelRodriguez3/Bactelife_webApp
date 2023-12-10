@@ -36,7 +36,7 @@ export default function GetAdmin() {
       <Topbar />
       <div className="container">
           {sidebarVisible && <Sidebar />}
-        <div className={sidebarVisible ? 'prueba' : 'prueba-full'}>
+        <div className={sidebarVisible ? 'prueba' : 'prueba-fullAdmin'}>
           <div className="case">
             <div className="caseTitleContainer">
               <h1 className="caseTitle">{params.id ? "Edit admin" : "Create admin"}</h1>

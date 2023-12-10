@@ -2,6 +2,20 @@
   display: flex;
 }
 
+.prueba, .prueba-full, .prueba-fullAdmin {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  opacity: 1;
+  margin: 0;
+  background-color: rgb(235, 240, 245);
+}
+
+.prueba-fullAdmin{
+height: 100vh;
+flex: 1;
+overflow: hidden;
+}
+
 .prueba{
   flex: 4;
 }
