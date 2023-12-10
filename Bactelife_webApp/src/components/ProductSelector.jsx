@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import '../index.css'
+import '../index.css';
 
 export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
-    const [productInfo, setProductInfo] = useState('');
+    const [productInfo, setProductInfo] = useState(null); // Cambiado a null para representar objeto vacío
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedUnit, setSelectedUnit] = useState('');
     const [selectedType, setSelectedType] = useState('');
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
-    const area = length * width;
+    const area = length * width || 0; // Se añade verificación de valor numérico para el área
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
         const selectedProductInfo = products.find(product => product.name === e.target.value);
-        setProductInfo(selectedProductInfo)
+        setProductInfo(selectedProductInfo || null); // Verifica si hay información del producto
     };
 
     const handleSize = (e) => {
@@ -26,26 +26,24 @@ export const ProductSelector = ({ products }) => {
     };
 
     const handleType = (e) => {
-        setSelectedType(e.target.value)
+        setSelectedType(e.target.value);
         if (e.target.value === 'area') {
-            setWidth('')
-            setLength('')
+            setWidth('');
+            setLength('');
         } else {
-            setSelectedSize('')
+            setSelectedSize('');
         }
     };
 
     const handleLength = (e) => {
-        setLength(e.target.value)
+        setLength(e.target.value);
     };
 
     const handleWidth = (e) => {
-        setWidth(e.target.value)
+        setWidth(e.target.value);
     };
-    
-    // formulas for the calculator
-    // manejo del precio segun el tipo de calculo
-    const price = selectedType === 'area' && productInfo ? productInfo.price_per_acre : (productInfo ? productInfo.price : 0);
+
+    const price = selectedType === 'area' && productInfo ? productInfo.price_per_acre : (productInfo ? productInfo.price : 0); // Manejo del precio según el tipo de cálculo
 
     const estimatedCost = ((productInfo && productInfo.cost_per_acre || 0) * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price || 0;
     const productQuantity = (productInfo && productInfo.product_per_acre || 0) * (selectedType === 'area' ? area : (selectedSize || 1)) || 0;
@@ -80,7 +78,6 @@ export const ProductSelector = ({ products }) => {
             <br />
             <label className="label">Unit:</label>
             <br />
-            
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
                 <option value={1}>Yards</option>
@@ -88,7 +85,6 @@ export const ProductSelector = ({ products }) => {
                 <option value={0.836127}>Meters</option>
                 <option value={8.3613e-7}>Kilometers</option>
             </select>
-            
             {productInfo ? <p className="price">Price: ${price}</p> : ''}
             {(selectedProduct && selectedUnit && (selectedSize > 0 || area > 0)) && (
                 <>
