@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../index.css'; // Asegúrate de que la ruta al archivo de estilos sea correcta
+import '../index.css';
 
 const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
