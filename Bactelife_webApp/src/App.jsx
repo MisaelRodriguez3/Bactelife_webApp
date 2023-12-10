@@ -13,6 +13,7 @@ import GetProduct from './pages/admin/GetProduct';
 import AdminList from './pages/admin/AdminList';
 import GetAdmin from './pages/admin/GetAdmin';
 import NotFound from './components/NotFound404';
+import ThankYouPage from './pages/thakns.email'; 
 
 export const App = () => {
     return (
@@ -38,6 +39,10 @@ export const App = () => {
                         <Route path="/admin/:id" element={<GetAdmin />} />
                         <Route path="/newAdmin" element={<GetAdmin />} />
                     </Route>
+
+                    {/* Esta ruta apunta a la página de agradecimiento */}
+                    <Route path='/thanks' element={<ThankYouPage />} />
+                    
                     <Route path='/*' element={<NotFound/>} />
                 </Routes>
             </Router>

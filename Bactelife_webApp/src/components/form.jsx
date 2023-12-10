@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { sendEmailRequest } from "../api/backRoutes";
 import "./sidebar/form.css";
 
 export function Formulario() {
+  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
     const formDataObject = {};
+
     formData.forEach((value, key) => {
       formDataObject[key] = value;
     });
@@ -18,6 +19,11 @@ export function Formulario() {
 
       if (response.status === 200) {
         console.log('Correo enviado con éxito');
+        // Cambiar el estado para mostrar que el correo se ha enviado
+        setEmailSent(true);
+        // Redirigir a la página de agradecimiento
+        window.location.href = `/thanks?name=${formDataObject.name}`;
+
       } else {
         console.error('Error al enviar el correo:', response.statusText);
       }
@@ -25,8 +31,7 @@ export function Formulario() {
       console.error('Error en el envío del correo:', error.message);
     }
   };
-
-
+ 
   return (
     <div className="body">
       <div className="container-2">
@@ -66,4 +71,4 @@ export function Formulario() {
   );
 }
 
-export default Formulario
+export default Formulario;

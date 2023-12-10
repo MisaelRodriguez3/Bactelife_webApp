@@ -14,4 +14,4 @@ export const FRONT_URL = process.env.FRONT_URL || 'http://localhost:5173'
 export const CLIENTD_ID = "78131165559-97s0itpdq82s6bj3jec32i57bofalrva.apps.googleusercontent.com"
 export const CLIENT_SECRET = "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"
 export const REDIRECT_URI = "https://developers.google.com/oauthplayground"
-export const REFRESH_TOKEN = "1//04EXvOiis5ODgCgYIARAAGAQSNwF-L9IrFUWG56AqRDV4_Imkj_VwNQuCLwFZW8w90wAWNtUophGVT_vaYtuYXtzVE8u5HXvlYak"
+export const REFRESH_TOKEN = "1//04lMwcc26m9afCgYIARAAGAQSNwF-L9IrdLK-y5I9y7cnOU5i09tfTTHGbv7HnBBnROp1KB8zAqRuV3HL5BGbzMkk2vad5GB6Xc4"
