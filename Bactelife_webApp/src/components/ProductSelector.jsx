@@ -9,6 +9,14 @@ const ProductSelector = ({ products }) => {
     const [selectedType, setSelectedType] = useState('area');
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
+    
+    // Valores de conversión basados en yardas como unidad base
+    const unitConversions = {
+        Yards: 1,
+        Hectares: 1 / 11959.9, // Proporción de hectáreas a yardas
+        Meters: 1.09361, // Proporción de metros a yardas
+        Kilometers: 1093.61 // Proporción de kilómetros a yardas
+    };
 
     // Calculate area whenever length or width changes
     const area = selectedType === 'area' ? length * width : '';
@@ -87,10 +95,10 @@ const ProductSelector = ({ products }) => {
             
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
-                <option value={1}>Yards</option>
-                <option value={8.3613e-5}>Hectares</option>
-                <option value={0.836127}>Meters</option>
-                <option value={8.3613e-7}>Kilometers</option>
+                <option value={unitConversions.Yards}>Yards</option>
+                <option value={unitConversions.Hectares}>Hectares</option>
+                <option value={unitConversions.Meters}>Meters</option>
+                <option value={unitConversions.Kilometers}>Kilometers</option>
             </select>
             
             {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
