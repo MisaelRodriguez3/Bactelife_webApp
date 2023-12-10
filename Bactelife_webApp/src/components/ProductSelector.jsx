@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../index.css';
 
-const ProductSelector = ({ products }) => {
+export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
     const [productInfo, setProductInfo] = useState({});
     const [selectedSize, setSelectedSize] = useState('');
@@ -9,7 +9,7 @@ const ProductSelector = ({ products }) => {
     const [selectedType, setSelectedType] = useState('area');
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
-    
+
     // Valores de conversión basados en yardas como unidad base
     const unitConversions = {
         Yards: 1,
@@ -92,7 +92,7 @@ const ProductSelector = ({ products }) => {
             <br />
             <label className="label">Unit:</label>
             <br />
-            
+
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
                 <option value={unitConversions.Yards}>Yards</option>
@@ -100,7 +100,7 @@ const ProductSelector = ({ products }) => {
                 <option value={unitConversions.Meters}>Meters</option>
                 <option value={unitConversions.Kilometers}>Kilometers</option>
             </select>
-            
+
             {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
             {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
                 <>

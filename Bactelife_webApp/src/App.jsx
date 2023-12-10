@@ -38,7 +38,7 @@ export const App = () => {
                         <Route path="/admin/:id" element={<GetAdmin />} />
                         <Route path="/newAdmin" element={<GetAdmin />} />
                     </Route>
-                    <Route path='/*' element={<NotFound/>} />
+                    <Route path='/*' element={<NotFound />} />
                 </Routes>
             </Router>
         </AdminProvider>
