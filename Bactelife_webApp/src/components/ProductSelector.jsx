@@ -11,12 +11,6 @@ export const ProductSelector = ({ products }) => {
     const [width, setWidth] = useState('');
     const area = length * width;
 
-    //formulas for the calculator
-    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
-    const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
-    const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
-    const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
-
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
         const selectedProductInfo = products.find(product => product.name === e.target.value);
@@ -48,6 +42,14 @@ export const ProductSelector = ({ products }) => {
     const handleWidth = (e) => {
         setWidth(e.target.value)
     };
+    
+    // formulas for the calculator
+    // manejo del precio segun el tipo de calculo
+    const price = selectedType === 'area' && productInfo ? productInfo.price_per_acre : (productInfo ? productInfo.price : 0);
+
+    const estimatedCost = ((productInfo && productInfo.cost_per_acre || 0) * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price || 0;
+    const productQuantity = (productInfo && productInfo.product_per_acre || 0) * (selectedType === 'area' ? area : (selectedSize || 1)) || 0;
+    const waterRequired = (productInfo && productInfo.water_per_acre || 0) * (selectedType === 'area' ? area : (selectedSize || 1)) / selectedUnit || 0;
 
     return (
         <div className="product">
@@ -87,14 +89,14 @@ export const ProductSelector = ({ products }) => {
                 <option value={8.3613e-7}>Kilometers</option>
             </select>
             
-            {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
-            {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
+            {productInfo ? <p className="price">Price: ${price}</p> : ''}
+            {(selectedProduct && selectedUnit && (selectedSize > 0 || area > 0)) && (
                 <>
-                    <p className="estimated-cost">Estimated cost: ${estimatedCost}</p>
-                    <p className="product-quantity">Product quantity: {productQuantity} lb</p>
-                    <p className="water-required">Water required: {waterRequired} quarts</p>
-                </> : ""
-            }
+                    <p className="estimated-cost">Estimated cost: ${estimatedCost.toFixed(2)}</p>
+                    <p className="product-quantity">Product quantity: {productQuantity.toFixed(2)} lb</p>
+                    <p className="water-required">Water required: {waterRequired.toFixed(2)} quarts</p>
+                </>
+            )}
         </div>
     );
 };
