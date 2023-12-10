@@ -40,6 +40,8 @@ export const App = () => {
                         <Route path="/newAdmin" element={<GetAdmin />} />
                     </Route>
 
+                    <Route path='/thanks' element={<ThankYouPage />} />
+
 
 =======
                     <Route path='/*' element={<NotFound />} />
