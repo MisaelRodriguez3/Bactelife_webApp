@@ -3,24 +3,21 @@ import '../index.css'
 
 export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
-    const [productInfo, setProductInfo] = useState('');
+    const [productInfo, setProductInfo] = useState({});
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedUnit, setSelectedUnit] = useState('');
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState('area');
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
-    const area = length * width;
 
-    //formulas for the calculator
-    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
-    const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
-    const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
-    const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
+    // Calculate area whenever length or width changes
+    const area = selectedType === 'area' ? length * width : '';
 
     const handleProductChange = (e) => {
-        setSelectedProduct(e.target.value);
-        const selectedProductInfo = products.find(product => product.name === e.target.value);
-        setProductInfo(selectedProductInfo)
+        const productName = e.target.value;
+        setSelectedProduct(productName);
+        const selectedProductInfo = products.find(product => product.name === productName);
+        setProductInfo(selectedProductInfo || {});
     };
 
     const handleSize = (e) => {
@@ -32,22 +29,38 @@ export const ProductSelector = ({ products }) => {
     };
 
     const handleType = (e) => {
-        setSelectedType(e.target.value)
+        setSelectedType(e.target.value);
+        // Reset values when changing between 'area' and 'measures'
         if (e.target.value === 'area') {
-            setWidth('')
-            setLength('')
+            setWidth('');
+            setLength('');
         } else {
-            setSelectedSize('')
+            setSelectedSize('');
         }
     };
 
     const handleLength = (e) => {
-        setLength(e.target.value)
+        setLength(e.target.value);
     };
 
     const handleWidth = (e) => {
-        setWidth(e.target.value)
+        setWidth(e.target.value);
     };
+
+    // Perform calculations based on selected inputs
+    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price || 0;
+    const estimatedCost = (
+        (productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) /
+        (selectedUnit || 1) * price
+    ).toFixed(2);
+
+    const productQuantity = (
+        productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
+
+    const waterRequired = (
+        productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
 
     return (
         <div className="product">
