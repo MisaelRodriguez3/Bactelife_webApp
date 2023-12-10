@@ -26,7 +26,7 @@ const currentAdmins = admins.slice(indexOfFirstItem, indexOfLastItem);
     <Topbar />
     <div className="container">
       {sidebarVisible && <Sidebar />}
-      <div className={sidebarVisible ? 'prueba' : 'prueba-full'}>
+      <div className={sidebarVisible ? 'prueba' : 'prueba-fullAdmin'}>
         <div className="caseTitleContainer">
           <h1 className="caseTitle">Admin List</h1>
           <Link to="/newAdmin">

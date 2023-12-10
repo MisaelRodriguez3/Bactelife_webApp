@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const createProductSchema = z.object({
   Gal_Product: z.number({

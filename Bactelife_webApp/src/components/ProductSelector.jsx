@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
-import '../index.css'
+import '../index.css';
 
 export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
-    const [productInfo, setProductInfo] = useState('');
+    const [productInfo, setProductInfo] = useState({});
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedUnit, setSelectedUnit] = useState('');
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState('area');
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
-    const area = length * width;
 
-    //formulas for the calculator
-    const estimatedCost = (((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit) * productInfo.price).toFixed(2);
-    const productQuantity = ((productInfo.pounds_per_yard * (selectedSize || area)) / selectedUnit).toFixed(2);
-    const waterRequired = ((productInfo.quarts_per_pound * (selectedSize || area)) / selectedUnit).toFixed(2);
+    // Valores de conversión basados en yardas como unidad base
+    const unitConversions = {
+        Yards: 1,
+        Hectares: 1 / 11959.9, // Proporción de hectáreas a yardas
+        Meters: 1.09361, // Proporción de metros a yardas
+        Kilometers: 1093.61 // Proporción de kilómetros a yardas
+    };
+
+    // Calculate area whenever length or width changes
+    const area = selectedType === 'area' ? length * width : '';
 
     const handleProductChange = (e) => {
-        setSelectedProduct(e.target.value);
-        const selectedProductInfo = products.find(product => product.name === e.target.value);
-        setProductInfo(selectedProductInfo)
+        const productName = e.target.value;
+        setSelectedProduct(productName);
+        const selectedProductInfo = products.find(product => product.name === productName);
+        setProductInfo(selectedProductInfo || {});
     };
 
     const handleSize = (e) => {
@@ -31,22 +37,38 @@ export const ProductSelector = ({ products }) => {
     };
 
     const handleType = (e) => {
-        setSelectedType(e.target.value)
+        setSelectedType(e.target.value);
+        // Reset values when changing between 'area' and 'measures'
         if (e.target.value === 'area') {
-            setWidth('')
-            setLength('')
+            setWidth('');
+            setLength('');
         } else {
-            setSelectedSize('')
+            setSelectedSize('');
         }
     };
 
     const handleLength = (e) => {
-        setLength(e.target.value)
+        setLength(e.target.value);
     };
 
     const handleWidth = (e) => {
-        setWidth(e.target.value)
+        setWidth(e.target.value);
     };
+
+    // Perform calculations based on selected inputs
+    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price || 0;
+    const estimatedCost = (
+        (productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) /
+        (selectedUnit || 1) * price
+    ).toFixed(2);
+
+    const productQuantity = (
+        productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
+
+    const waterRequired = (
+        productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
 
     return (
         <div className="product">
@@ -57,13 +79,6 @@ export const ProductSelector = ({ products }) => {
                 {products.map(product => (
                     <option key={product._id} value={product.name}>{product.name}</option>
                 ))}
-            </select>
-            <br />
-            <label className="label">Calculate by:</label>
-            <br />
-            <select className="select" name="type" id="type" value={selectedType} onChange={handleType}>
-                <option value="area">Area</option>
-                <option value="measures">Measures</option>
             </select>
             <br />
             {selectedType === 'measures' ?
@@ -77,13 +92,15 @@ export const ProductSelector = ({ products }) => {
             <br />
             <label className="label">Unit:</label>
             <br />
+
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
-                <option value={1}>Yards</option>
-                {selectedType === 'measures' ? '' : <option value={8.3613e-5}>Hectares</option>}
-                <option value={0.836127}>Meters</option>
-                <option value={8.3613e-7}>Kilometers</option>
+                <option value={unitConversions.Yards}>Yards</option>
+                <option value={unitConversions.Hectares}>Hectares</option>
+                <option value={unitConversions.Meters}>Meters</option>
+                <option value={unitConversions.Kilometers}>Kilometers</option>
             </select>
+
             {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
             {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
                 <>

@@ -40,10 +40,10 @@ export const App = () => {
                         <Route path="/newAdmin" element={<GetAdmin />} />
                     </Route>
 
-                    {/* Esta ruta apunta a la página de agradecimiento */}
-                    <Route path='/thanks' element={<ThankYouPage />} />
-                    
-                    <Route path='/*' element={<NotFound/>} />
+
+=======
+                    <Route path='/*' element={<NotFound />} />
+
                 </Routes>
             </Router>
         </AdminProvider>

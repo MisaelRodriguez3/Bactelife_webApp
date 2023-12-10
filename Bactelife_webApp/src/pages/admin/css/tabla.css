@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.prueba, .prueba-full {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.875rem;
-    opacity: 1;
-    margin: 0;
-    background-color: rgb(235, 240, 245);
-    height: 100vh;
+.prueba, .prueba-full, .prueba-fullAdmin {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  opacity: 1;
+  margin: 0;
+  background-color: rgb(235, 240, 245);
+}
+
+.prueba-fullAdmin{
+height: 100vh;
+flex: 1;
+overflow: hidden;
 }
 
 .container {
