@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../index.css';
 
 export const ProductSelector = () => {
@@ -16,34 +16,50 @@ export const ProductSelector = () => {
         Litros: 3.78541,
     };
 
-    // Fórmulas for the calculator
-    const price = 120;
-    const estimatedCost = (120 * quantity * unitConversion[selectedType] / unitConversion[selectedProductUnit] * price).toFixed(2);
-    const productQuantity = (12 * quantity * unitConversion[selectedType]).toFixed(2);
-    const waterRequired = (10 * quantity * unitConversion[selectedType] / unitConversion[selectedWaterUnit]).toFixed(2);
+    const [estimatedCost, setEstimatedCost] = useState(0);
+    const [productQuantity, setProductQuantity] = useState(0);
+    const [waterRequired, setWaterRequired] = useState(0);
+
+    useEffect(() => {
+        if (selectedType && selectedProductUnit && selectedWaterUnit && quantity > 0) {
+            const price = 120;
+            const cost = (
+                120 * quantity * unitConversion[selectedType] /
+                unitConversion[selectedProductUnit] * price
+            ).toFixed(2);
+            setEstimatedCost(cost);
+
+            const product = (
+                12 * quantity * unitConversion[selectedType]
+            ).toFixed(2);
+            setProductQuantity(product);
+
+            const water = (
+                10 * quantity * unitConversion[selectedType] /
+                unitConversion[selectedWaterUnit]
+            ).toFixed(2);
+            setWaterRequired(water);
+
+            setResultsVisible(true);
+        } else {
+            setResultsVisible(false);
+        }
+    }, [selectedType, selectedProductUnit, selectedWaterUnit, quantity]);
 
     const handleType = (e) => {
         setSelectedType(e.target.value);
-        setResultsVisible(false);
     };
 
     const handleProductUnit = (e) => {
         setSelectedProductUnit(e.target.value);
-        setResultsVisible(false);
     };
 
     const handleWaterUnit = (e) => {
         setSelectedWaterUnit(e.target.value);
-        setResultsVisible(false);
     };
 
     const handleQuantity = (e) => {
         setQuantity(e.target.value);
-        setResultsVisible(false);
-    };
-
-    const handleCalculate = () => {
-        setResultsVisible(true);
     };
 
     return (
@@ -78,17 +94,15 @@ export const ProductSelector = () => {
             <br />
             <input className="input" type="number" placeholder="Quantity" min={0} value={quantity} onChange={handleQuantity} disabled={!selectedType || !selectedProductUnit || !selectedWaterUnit} />
             <br />
-            {resultsVisible && selectedProductUnit && selectedWaterUnit && (quantity > 0) ? (
+            {resultsVisible && (
                 <>
                     <p className="estimated-cost">Estimated cost: ${estimatedCost}</p>
                     <p className="product-quantity">Product quantity: {productQuantity} {selectedProductUnit === "Litros" ? "litros" : selectedProductUnit.toLowerCase()}</p>
                     <p className="water-required">Water required: {waterRequired} {selectedWaterUnit === "Litros" ? "litros" : selectedWaterUnit.toLowerCase()}</p>
                 </>
-            ) : (
-                ''
             )}
             <br />
-            <button onClick={handleCalculate} disabled={!selectedType || !selectedProductUnit || !selectedWaterUnit || !(quantity > 0)}>Calcular</button>
+            <button onClick={() => setResultsVisible(true)} disabled={!selectedType || !selectedProductUnit || !selectedWaterUnit || !(quantity > 0)}>Calculate</button>
         </div>
     );
 };
