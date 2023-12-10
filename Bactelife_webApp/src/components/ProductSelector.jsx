@@ -104,5 +104,3 @@ const ProductSelector = ({ products }) => {
         </div>
     );
 };
-
-export default ProductSelector;
