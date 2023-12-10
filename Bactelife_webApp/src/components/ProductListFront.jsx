@@ -4,7 +4,6 @@ import "../pages/admin/css/tablaFront.css";
 import TableProductFront from "./TableProductFront";
 
 export default function ProductListFront() {
-    document.title = 'ProductList';
 
     const { getProducts, products } = useAdmin();
     useEffect(() => {

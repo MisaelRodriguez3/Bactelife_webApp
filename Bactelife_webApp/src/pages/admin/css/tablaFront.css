@@ -87,6 +87,7 @@
     border: 2px solid #909090;
     color: #0c2b68;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /*Estilos resposive*/
