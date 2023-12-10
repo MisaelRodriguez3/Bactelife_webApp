@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../index.css'
+import '../index.css'; // Asegúrate de que la ruta al archivo de estilos sea correcta
 
-export const ProductSelector = ({ products }) => {
+const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
     const [productInfo, setProductInfo] = useState({});
     const [selectedSize, setSelectedSize] = useState('');
@@ -73,13 +73,6 @@ export const ProductSelector = ({ products }) => {
                 ))}
             </select>
             <br />
-            <label className="label">Calculate by:</label>
-            <br />
-            <select className="select" name="type" id="type" value={selectedType} onChange={handleType}>
-                <option value="area">Area</option>
-                <option value="measures">Measures</option>
-            </select>
-            <br />
             {selectedType === 'measures' ?
                 <>
                     <label className="label">Length:</label>
@@ -111,3 +104,5 @@ export const ProductSelector = ({ products }) => {
         </div>
     );
 };
+
+export default ProductSelector;
