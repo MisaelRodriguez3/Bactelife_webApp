@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import '../index.css'
+=======
+import React, { useState } from 'react';
+import '../index.css';
+>>>>>>> 2ac8aeaa2740feb82002d3ae10012dd30f40433d
 
 export const ProductSelector = ({ products }) => {
     const [selectedProduct, setSelectedProduct] = useState('');
-    const [productInfo, setProductInfo] = useState('');
+    const [productInfo, setProductInfo] = useState({});
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedUnit, setSelectedUnit] = useState('');
+<<<<<<< HEAD
     const [selectedType, setSelectedType] = useState('');
     const [areaOption, setAreaOption] = useState('area');
     const [length, setLength] = useState('');
@@ -88,17 +94,34 @@ export const ProductSelector = ({ products }) => {
             setArea('')
         }
     };
+=======
+    const [selectedType, setSelectedType] = useState('area');
+    const [length, setLength] = useState('');
+    const [width, setWidth] = useState('');
+>>>>>>> 2ac8aeaa2740feb82002d3ae10012dd30f40433d
 
-    //formulas for the calculator
-const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price;
-const estimatedCost = ((productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) / selectedUnit * price).toFixed(2);
-const productQuantity = (productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
-const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))).toFixed(2);
+    // Valores de conversión basados en yardas como unidad base
+    const unitConversions = {
+        Yards: 1,
+        Hectares: 1 / 11959.9, // Proporción de hectáreas a yardas
+        Meters: 1.09361, // Proporción de metros a yardas
+        Kilometers: 1093.61 // Proporción de kilómetros a yardas
+    };
+
+    // Calculate area whenever length or width changes
+    const area = selectedType === 'area' ? length * width : '';
 
     const handleProductChange = (e) => {
+<<<<<<< HEAD
         setSelectedProduct(e.target.value);
         // const selectedProductInfo = products.find(product => product.name === e.target.value);
         // setProductInfo(selectedProductInfo)
+=======
+        const productName = e.target.value;
+        setSelectedProduct(productName);
+        const selectedProductInfo = products.find(product => product.name === productName);
+        setProductInfo(selectedProductInfo || {});
+>>>>>>> 2ac8aeaa2740feb82002d3ae10012dd30f40433d
     };
 
     const handleSize = (e) => {
@@ -110,22 +133,38 @@ const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? a
     };
 
     const handleType = (e) => {
-        setSelectedType(e.target.value)
+        setSelectedType(e.target.value);
+        // Reset values when changing between 'area' and 'measures'
         if (e.target.value === 'area') {
-            setWidth('')
-            setLength('')
+            setWidth('');
+            setLength('');
         } else {
-            setSelectedSize('')
+            setSelectedSize('');
         }
     };
 
     const handleLength = (e) => {
-        setLength(e.target.value)
+        setLength(e.target.value);
     };
 
     const handleWidth = (e) => {
-        setWidth(e.target.value)
+        setWidth(e.target.value);
     };
+
+    // Perform calculations based on selected inputs
+    const price = selectedType === 'area' ? productInfo.price_per_acre : productInfo.price || 0;
+    const estimatedCost = (
+        (productInfo.cost_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))) /
+        (selectedUnit || 1) * price
+    ).toFixed(2);
+
+    const productQuantity = (
+        productInfo.product_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
+
+    const waterRequired = (
+        productInfo.water_per_acre * (selectedType === 'area' ? area : (selectedSize || 1))
+    ).toFixed(2);
 
     return (
         <div className="product">
@@ -139,6 +178,7 @@ const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? a
                 ))} */}
             </select>
             <br />
+<<<<<<< HEAD
             <label className="label">Calculate by:</label>
             <br />
             <select className="select" name="type" id="type" value={areaOption} onChange={handleOptionChange}>
@@ -147,6 +187,9 @@ const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? a
             </select>
             <br />
             {areaOption === 'measures' ?
+=======
+            {selectedType === 'measures' ?
+>>>>>>> 2ac8aeaa2740feb82002d3ae10012dd30f40433d
                 <>
                     <label className="label">Length:</label>
                     <input className="input" type="number" name="width" id="width" min={0} value={width} onChange={handleWidth} />
@@ -158,9 +201,10 @@ const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? a
             <br />
             <label className="label">Unit:</label>
             <br />
-            
+
             <select className="select" name="size" id="size" value={selectedUnit} onChange={handleUnit}>
                 <option value="" disabled>Select unit of measure</option>
+<<<<<<< HEAD
                 <option value="yards">Yards</option>
                 <option value="hectares">Hectares</option>
                 <option value="meters">Meters</option>
@@ -169,6 +213,16 @@ const waterRequired = (productInfo.water_per_acre * (selectedType === 'area' ? a
             
             {selectedProduct ? <p className="price">Price per Acre: ${costPerAcre}</p> : ''}
             {selectedProduct && selectedUnit && (result > 0) ?
+=======
+                <option value={unitConversions.Yards}>Yards</option>
+                <option value={unitConversions.Hectares}>Hectares</option>
+                <option value={unitConversions.Meters}>Meters</option>
+                <option value={unitConversions.Kilometers}>Kilometers</option>
+            </select>
+
+            {selectedProduct ? <p className="price">Price: ${productInfo.price}</p> : ''}
+            {selectedProduct && selectedUnit && (selectedSize > 0 || area > 0) ?
+>>>>>>> 2ac8aeaa2740feb82002d3ae10012dd30f40433d
                 <>
                     <p className="acres">Acre(s): {result}</p>
                     <p className="estimated-cost">Estimated cost: ${costEstimate}</p>

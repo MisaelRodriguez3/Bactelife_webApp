@@ -87,6 +87,7 @@
     border: 2px solid #909090;
     color: #0c2b68;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /*Estilos resposive*/
@@ -119,4 +120,29 @@
     }
 
 
+}
+
+@media only screen and (max-width: 260px) {
+    .btn-pagination {
+        font-size: 10px;
+        margin: 1px;
+    }
+
+    .pages {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 210px) {
+    .btn-pagination {
+        margin: 5px;
+    }
+
+
+    .pages {
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
