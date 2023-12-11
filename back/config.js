@@ -11,7 +11,7 @@ export const PASSWORD = "Pablo1e53";
 
 export const FRONT_URL = process.env.FRONT_URL || 'http://localhost:5173'
 
-export const CLIENTD_ID = "78131165559-97s0itpdq82s6bj3jec32i57bofalrva.apps.googleusercontent.com"
-export const CLIENT_SECRET = "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"
+export const CLIENTD_ID = "294093914370-fjgi7sprg2gc5fdai6ountrs8k087cl1.apps.googleusercontent.com"
+export const CLIENT_SECRET = "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"
 export const REDIRECT_URI = "https://developers.google.com/oauthplayground"
-export const REFRESH_TOKEN = "1//04lMwcc26m9afCgYIARAAGAQSNwF-L9IrdLK-y5I9y7cnOU5i09tfTTHGbv7HnBBnROp1KB8zAqRuV3HL5BGbzMkk2vad5GB6Xc4"
+export const REFRESH_TOKEN = "1//04FLdw5djm_ozCgYIARAAGAQSNwF-L9IrpYkd-dLSPSNsM9RLl_yqrr4DeJ3oLPj0sLroHCPz0jksKF-8m3O0_izjEgAWg2C6yfI"

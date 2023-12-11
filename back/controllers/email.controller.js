@@ -88,7 +88,7 @@ export const sendEmail = async (req, res) => {
                 service: "gmail",
                 auth: {
                     type: "OAuth2",
-                    user: "pruebaspepes7@gmail.com",
+                    user: "estimationtoool.bactelife@gmail.com",
                     clientId: CLIENTD_ID,
                     clientSecret: CLIENT_SECRET,
                     refreshToken: REFRESH_TOKEN,
@@ -97,8 +97,8 @@ export const sendEmail = async (req, res) => {
 
             });
             const mailOptions = {
-                from: 'Bactelife webApp <pruebaspepes7@gmail.com>',
-                to: "ovejasdelwhite@gmail.com",
+                from: 'Bactelife webApp <estimationtoool.bactelife@gmail.com>',
+                to: "pruebaspepes7@gmail.com",
                 subject: "web app form message",
                 html: contentHTML,
                 attachments: [
