@@ -25,7 +25,7 @@ export default function ProductList() {
       <Topbar />
       <div className="container">
         {sidebarVisible && <Sidebar />}
-        <div className={sidebarVisible ? 'prueba' : 'prueba-full'}>
+        <div className={sidebarVisible ? 'prueba' : 'prueba-fullAdmin'}>
           <div className="caseTitleContainer">
             <h1 className="caseTitle">Product List</h1>
             <Link to="/newProduct">
