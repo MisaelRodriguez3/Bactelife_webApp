@@ -28,7 +28,7 @@ export function Formulario() {
         console.error('Error al enviar el correo:', response.statusText);
       }
     } catch (error) {
-      console.error('Error en el envío del correo:', error.message);
+      console.error('Error en el envío del correo:', error);
     }
   };
  
