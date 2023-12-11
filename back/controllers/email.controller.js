@@ -115,7 +115,7 @@ try {
             const result = await transporter.sendMail(mailOptions);
             res.status(200).send("enviado");
         } catch (error) {
-            console.log(error.message);
-            res.status(500).send("error al enviar el correo");
+            console.log("Error al enviar el correo:", error);
+            res.status(500).send("Error al enviar el correo");
         }
     };

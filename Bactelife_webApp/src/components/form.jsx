@@ -14,6 +14,8 @@ export function Formulario() {
       formDataObject[key] = value;
     });
 
+    console.log('Datos del formulario:', formDataObject);
+
     try {
       const response = await sendEmailRequest(formDataObject);
 
