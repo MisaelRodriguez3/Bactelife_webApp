@@ -13,7 +13,7 @@ import GetProduct from './pages/admin/GetProduct';
 import AdminList from './pages/admin/AdminList';
 import GetAdmin from './pages/admin/GetAdmin';
 import NotFound from './components/NotFound404';
-import ThankYouPage from './pages/thakns.email'; 
+import ThankYouPage from './pages/thakns.email';
 
 export const App = () => {
     return (
@@ -41,9 +41,6 @@ export const App = () => {
                     </Route>
 
                     <Route path='/thanks' element={<ThankYouPage />} />
-
-
-=======
                     <Route path='/*' element={<NotFound />} />
 
                 </Routes>
