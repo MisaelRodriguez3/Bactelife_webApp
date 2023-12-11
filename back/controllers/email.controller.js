@@ -1,10 +1,19 @@
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { CLIENTD_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } from '../config.js'
+import  path  from 'path'
+import { fileURLToPath } from 'url';
+
+
+
 
 export const sendEmail = async (req, res) => {
     const { name, phone, email, preferred_language, message } = req.body;
-
+  
+    const __filename = fileURLToPath(import.meta.url);
+    const _dirname = path.dirname(__filename);
+    const imagePath = path.join(_dirname, '../public', 'logo-Back.png');
+    
     const contentHTML = `
     <!DOCTYPE html>
     <html lang="en">
@@ -76,6 +85,7 @@ export const sendEmail = async (req, res) => {
 
 
 
+
 try {
     const oAuth2Client = new google.auth.OAuth2(CLIENTD_ID, CLIENT_SECRET, REDIRECT_URI);
     oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -101,15 +111,11 @@ try {
                 html: contentHTML,
                 attachments: [
                     {
-                        filename: 'logo_white.png',
-                        path: 'C:/xampp/htdocs/githud/Bactelife_webApp/Bactelife_webApp/public/logo-white.png',
-                        cid: 'logo'
+                    filename: 'logo_Back.png',
+                    path: imagePath, // Ruta del archivo adjunto
+                    cid: 'logo'
                     },
-                    {
-                        filename: 'water.png',
-                        path: 'C:/xampp/htdocs/githud/Bactelife_webApp/Bactelife_webApp/public/water.png',
-                        cid: 'water'
-                    }
+                  
                 ],
             };
             const result = await transporter.sendMail(mailOptions);
