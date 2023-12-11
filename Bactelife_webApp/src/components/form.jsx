@@ -35,7 +35,7 @@ export function Formulario() {
   return (
     <div className="body">
       <div className="container-2">
-        <form onSubmit={handleSubmit} action="/enviar" method="post">
+      <form onSubmit={handleSubmit} action="/api/send-email" method="post">
           <h1 className="titleForm">Make up the mind</h1>
           <div className="content">
             <div className="input-box">
