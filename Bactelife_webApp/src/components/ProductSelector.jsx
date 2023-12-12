@@ -44,17 +44,24 @@ export const ProductSelector = ({ products }) => {
     };
 
     const calculateCostEstimate = () => {
-        const gallonsPerAcre = 10;
-        const ozPerAcre = 12;
 
         const totalAcres = parseFloat(result);
 
         let discountProduct = null;
         let previousProduct = null;
+        let ozPerAcre = 99999999999999;
+        let gallonsPerAcre = null;
 
         for (const product of products) {
-            if (totalAcres < product.Acre) {
+            
+            if(product.Oz_Product < ozPerAcre){
+                ozPerAcre = product.Oz_Product;
+                gallonsPerAcre = product.Gal_Water;
+            }
+
+            if (totalAcres <= product.Acre) {
                 discountProduct = product;
+                previousProduct = product;
                 break;
             }
             previousProduct = product;
@@ -89,10 +96,6 @@ export const ProductSelector = ({ products }) => {
 
     const handleProductChange = (e) => {
         setSelectedProduct(e.target.value);
-    };
-
-    const handleSize = (e) => {
-        setSelectedSize(e.target.value);
     };
 
     const handleUnit = (e) => {
